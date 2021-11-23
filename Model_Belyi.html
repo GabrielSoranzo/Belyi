@@ -1,0 +1,1743 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)https://dahn-research.eu/nbplayer/ -->
+<html lang="en" class=" fxidqnhe idc0_334"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>nbplayer — Jupyter Notebook Player</title>
+        
+        <!-- Bootstrap CSS -->
+        <meta name="viewport" content="initial-scale=1">
+        <style>
+.CodeMirror {
+  
+  font-family: monospace;
+  height: 300px;
+  color: black;
+  direction: ltr;
+}
+.CodeMirror-lines {
+  padding: 4px 0; 
+}
+.CodeMirror pre.CodeMirror-line,
+.CodeMirror pre.CodeMirror-line-like {
+  padding: 0 4px; 
+}
+.CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {
+  background-color: white; 
+}
+.CodeMirror-gutters {
+  border-right: 1px solid #ddd;
+  background-color: #f7f7f7;
+  white-space: nowrap;
+}
+.CodeMirror-linenumbers {}
+.CodeMirror-linenumber {
+  padding: 0 3px 0 5px;
+  min-width: 20px;
+  text-align: right;
+  color: #999;
+  white-space: nowrap;
+}
+.CodeMirror-guttermarker { color: black; }
+.CodeMirror-guttermarker-subtle { color: #999; }
+.CodeMirror-cursor {
+  border-left: 1px solid black;
+  border-right: none;
+  width: 0;
+}
+.CodeMirror div.CodeMirror-secondarycursor {
+  border-left: 1px solid silver;
+}
+.cm-fat-cursor .CodeMirror-cursor {
+  width: auto;
+  border: 0 !important;
+  background: #7e7;
+}
+.cm-fat-cursor div.CodeMirror-cursors {
+  z-index: 1;
+}
+.cm-fat-cursor-mark {
+  background-color: rgba(20, 255, 20, 0.5);
+  -webkit-animation: blink 1.06s steps(1) infinite;
+  -moz-animation: blink 1.06s steps(1) infinite;
+  animation: blink 1.06s steps(1) infinite;
+}
+.cm-animate-fat-cursor {
+  width: auto;
+  border: 0;
+  -webkit-animation: blink 1.06s steps(1) infinite;
+  -moz-animation: blink 1.06s steps(1) infinite;
+  animation: blink 1.06s steps(1) infinite;
+  background-color: #7e7;
+}
+@-moz-keyframes blink {
+  0% {}
+  50% { background-color: transparent; }
+  100% {}
+}
+@-webkit-keyframes blink {
+  0% {}
+  50% { background-color: transparent; }
+  100% {}
+}
+@keyframes blink {
+  0% {}
+  50% { background-color: transparent; }
+  100% {}
+}
+.CodeMirror-overwrite .CodeMirror-cursor {}
+.cm-tab { display: inline-block; text-decoration: inherit; }
+.CodeMirror-rulers {
+  position: absolute;
+  left: 0; right: 0; top: -50px; bottom: 0;
+  overflow: hidden;
+}
+.CodeMirror-ruler {
+  border-left: 1px solid #ccc;
+  top: 0; bottom: 0;
+  position: absolute;
+}
+.cm-s-default .cm-header {color: blue;}
+.cm-s-default .cm-quote {color: #090;}
+.cm-negative {color: #d44;}
+.cm-positive {color: #292;}
+.cm-header, .cm-strong {font-weight: bold;}
+.cm-em {font-style: italic;}
+.cm-link {text-decoration: underline;}
+.cm-strikethrough {text-decoration: line-through;}
+.cm-s-default .cm-keyword {color: #708;}
+.cm-s-default .cm-atom {color: #219;}
+.cm-s-default .cm-number {color: #164;}
+.cm-s-default .cm-def {color: #00f;}
+.cm-s-default .cm-variable,
+.cm-s-default .cm-punctuation,
+.cm-s-default .cm-property,
+.cm-s-default .cm-operator {}
+.cm-s-default .cm-variable-2 {color: #05a;}
+.cm-s-default .cm-variable-3, .cm-s-default .cm-type {color: #085;}
+.cm-s-default .cm-comment {color: #a50;}
+.cm-s-default .cm-string {color: #a11;}
+.cm-s-default .cm-string-2 {color: #f50;}
+.cm-s-default .cm-meta {color: #555;}
+.cm-s-default .cm-qualifier {color: #555;}
+.cm-s-default .cm-builtin {color: #30a;}
+.cm-s-default .cm-bracket {color: #997;}
+.cm-s-default .cm-tag {color: #170;}
+.cm-s-default .cm-attribute {color: #00c;}
+.cm-s-default .cm-hr {color: #999;}
+.cm-s-default .cm-link {color: #00c;}
+.cm-s-default .cm-error {color: #f00;}
+.cm-invalidchar {color: #f00;}
+.CodeMirror-composing { border-bottom: 2px solid; }
+div.CodeMirror span.CodeMirror-matchingbracket {color: #0b0;}
+div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #a22;}
+.CodeMirror-matchingtag { background: rgba(255, 150, 0, .3); }
+.CodeMirror-activeline-background {background: #e8f2ff;}
+.CodeMirror {
+  position: relative;
+  overflow: hidden;
+  background: white;
+}
+.CodeMirror-scroll {
+  overflow: scroll !important; 
+  
+  
+  margin-bottom: -50px; margin-right: -50px;
+  padding-bottom: 50px;
+  height: 100%;
+  outline: none; 
+  position: relative;
+}
+.CodeMirror-sizer {
+  position: relative;
+  border-right: 50px solid transparent;
+}
+.CodeMirror-vscrollbar, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {
+  position: absolute;
+  z-index: 6;
+  display: none;
+}
+.CodeMirror-vscrollbar {
+  right: 0; top: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.CodeMirror-hscrollbar {
+  bottom: 0; left: 0;
+  overflow-y: hidden;
+  overflow-x: scroll;
+}
+.CodeMirror-scrollbar-filler {
+  right: 0; bottom: 0;
+}
+.CodeMirror-gutter-filler {
+  left: 0; bottom: 0;
+}
+.CodeMirror-gutters {
+  position: absolute; left: 0; top: 0;
+  min-height: 100%;
+  z-index: 3;
+}
+.CodeMirror-gutter {
+  white-space: normal;
+  height: 100%;
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: -50px;
+}
+.CodeMirror-gutter-wrapper {
+  position: absolute;
+  z-index: 4;
+  background: none !important;
+  border: none !important;
+}
+.CodeMirror-gutter-background {
+  position: absolute;
+  top: 0; bottom: 0;
+  z-index: 4;
+}
+.CodeMirror-gutter-elt {
+  position: absolute;
+  cursor: default;
+  z-index: 4;
+}
+.CodeMirror-gutter-wrapper ::selection { background-color: transparent }
+.CodeMirror-gutter-wrapper ::-moz-selection { background-color: transparent }
+.CodeMirror-lines {
+  cursor: text;
+  min-height: 1px; 
+}
+.CodeMirror pre.CodeMirror-line,
+.CodeMirror pre.CodeMirror-line-like {
+  
+  -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0;
+  border-width: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  margin: 0;
+  white-space: pre;
+  word-wrap: normal;
+  line-height: inherit;
+  color: inherit;
+  z-index: 2;
+  position: relative;
+  overflow: visible;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-variant-ligatures: contextual;
+  font-variant-ligatures: contextual;
+}
+.CodeMirror-wrap pre.CodeMirror-line,
+.CodeMirror-wrap pre.CodeMirror-line-like {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  word-break: normal;
+}
+.CodeMirror-linebackground {
+  position: absolute;
+  left: 0; right: 0; top: 0; bottom: 0;
+  z-index: 0;
+}
+.CodeMirror-linewidget {
+  position: relative;
+  z-index: 2;
+  padding: 0.1px; 
+}
+.CodeMirror-widget {}
+.CodeMirror-rtl pre { direction: rtl; }
+.CodeMirror-code {
+  outline: none;
+}
+.CodeMirror-scroll,
+.CodeMirror-sizer,
+.CodeMirror-gutter,
+.CodeMirror-gutters,
+.CodeMirror-linenumber {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+.CodeMirror-measure {
+  position: absolute;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+.CodeMirror-cursor {
+  position: absolute;
+  pointer-events: none;
+}
+.CodeMirror-measure pre { position: static; }
+div.CodeMirror-cursors {
+  visibility: hidden;
+  position: relative;
+  z-index: 3;
+}
+div.CodeMirror-dragcursors {
+  visibility: visible;
+}
+.CodeMirror-focused div.CodeMirror-cursors {
+  visibility: visible;
+}
+.CodeMirror-selected { background: #d9d9d9; }
+.CodeMirror-focused .CodeMirror-selected { background: #d7d4f0; }
+.CodeMirror-crosshair { cursor: crosshair; }
+.CodeMirror-line::selection, .CodeMirror-line > span::selection, .CodeMirror-line > span > span::selection { background: #d7d4f0; }
+.CodeMirror-line::-moz-selection, .CodeMirror-line > span::-moz-selection, .CodeMirror-line > span > span::-moz-selection { background: #d7d4f0; }
+.cm-searching {
+  background-color: #ffa;
+  background-color: rgba(255, 255, 0, .4);
+}
+.cm-force-border { padding-right: .1px; }
+@media print {
+  
+  .CodeMirror div.CodeMirror-cursors {
+    visibility: hidden;
+  }
+}
+.cm-tab-wrap-hack:after { content: ''; }
+span.CodeMirror-selectedtext { background: none; }
+.CodeMirror-fullscreen {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  height: auto;
+  z-index: 9;
+}
+.CodeMirror-foldmarker {
+  color: blue;
+  text-shadow: #b9f 1px 1px 2px, #b9f -1px -1px 2px, #b9f 1px -1px 2px, #b9f -1px 1px 2px;
+  font-family: arial;
+  line-height: .3;
+  cursor: pointer;
+}
+.CodeMirror-foldgutter {
+  width: .7em;
+}
+.CodeMirror-foldgutter-open,
+.CodeMirror-foldgutter-folded {
+  cursor: pointer;
+}
+.CodeMirror-foldgutter-open:after {
+  content: "\25BE";
+}
+.CodeMirror-foldgutter-folded:after {
+  content: "\25B8";
+}
+.CodeMirror-hints {
+  position: absolute;
+  z-index: 10;
+  overflow: hidden;
+  list-style: none;
+  margin: 0;
+  padding: 2px;
+  -webkit-box-shadow: 2px 3px 5px rgba(0,0,0,.2);
+  -moz-box-shadow: 2px 3px 5px rgba(0,0,0,.2);
+  box-shadow: 2px 3px 5px rgba(0,0,0,.2);
+  border-radius: 3px;
+  border: 1px solid silver;
+  background: white;
+  font-size: 90%;
+  font-family: monospace;
+  max-height: 20em;
+  overflow-y: auto;
+}
+.CodeMirror-hint {
+  margin: 0;
+  padding: 0 4px;
+  border-radius: 2px;
+  white-space: pre;
+  color: black;
+  cursor: pointer;
+}
+li.CodeMirror-hint-active {
+  background: #08f;
+  color: white;
+}
+/*! jQuery UI - v1.12.1 - 2016-09-14
+* http://jqueryui.com
+* Includes: core.css, accordion.css, autocomplete.css, menu.css, button.css, controlgroup.css, checkboxradio.css, datepicker.css, dialog.css, draggable.css, resizable.css, progressbar.css, selectable.css, selectmenu.css, slider.css, sortable.css, spinner.css, tabs.css, tooltip.css, theme.css
+* To view and modify this theme, visit http://jqueryui.com/themeroller/?ffDefault=Verdana%2CArial%2Csans-serif&fwDefault=normal&fsDefault=1.1em&cornerRadius=4px&bgColorHeader=cccccc&bgTextureHeader=highlight_soft&bgImgOpacityHeader=75&borderColorHeader=aaaaaa&fcHeader=222222&iconColorHeader=222222&bgColorContent=ffffff&bgTextureContent=flat&bgImgOpacityContent=75&borderColorContent=aaaaaa&fcContent=222222&iconColorContent=222222&bgColorDefault=e6e6e6&bgTextureDefault=glass&bgImgOpacityDefault=75&borderColorDefault=d3d3d3&fcDefault=555555&iconColorDefault=888888&bgColorHover=dadada&bgTextureHover=glass&bgImgOpacityHover=75&borderColorHover=999999&fcHover=212121&iconColorHover=454545&bgColorActive=ffffff&bgTextureActive=glass&bgImgOpacityActive=65&borderColorActive=aaaaaa&fcActive=212121&iconColorActive=454545&bgColorHighlight=fbf9ee&bgTextureHighlight=glass&bgImgOpacityHighlight=55&borderColorHighlight=fcefa1&fcHighlight=363636&iconColorHighlight=2e83ff&bgColorError=fef1ec&bgTextureError=glass&bgImgOpacityError=95&borderColorError=cd0a0a&fcError=cd0a0a&iconColorError=cd0a0a&bgColorOverlay=aaaaaa&bgTextureOverlay=flat&bgImgOpacityOverlay=0&opacityOverlay=30&bgColorShadow=aaaaaa&bgTextureShadow=flat&bgImgOpacityShadow=0&opacityShadow=30&thicknessShadow=8px&offsetTopShadow=-8px&offsetLeftShadow=-8px&cornerRadiusShadow=8px
+* Copyright jQuery Foundation and other contributors; Licensed MIT */
+.ui-helper-hidden{display:none}.ui-helper-hidden-accessible{border:0;clip:rect(0 0 0 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}.ui-helper-reset{margin:0;padding:0;border:0;outline:0;line-height:1.3;text-decoration:none;font-size:100%;list-style:none}.ui-helper-clearfix:before,.ui-helper-clearfix:after{content:"";display:table;border-collapse:collapse}.ui-helper-clearfix:after{clear:both}.ui-helper-zfix{width:100%;height:100%;top:0;left:0;position:absolute;opacity:0;filter:Alpha(Opacity=0)}.ui-front{z-index:100}.ui-state-disabled{cursor:default!important;pointer-events:none}.ui-icon{display:inline-block;vertical-align:middle;margin-top:-.25em;position:relative;text-indent:-99999px;overflow:hidden;background-repeat:no-repeat}.ui-widget-icon-block{left:50%;margin-left:-8px;display:block}.ui-widget-overlay{position:fixed;top:0;left:0;width:100%;height:100%}.ui-accordion .ui-accordion-header{display:block;cursor:pointer;position:relative;margin:2px 0 0 0;padding:.5em .5em .5em .7em;font-size:100%}.ui-accordion .ui-accordion-content{padding:1em 2.2em;border-top:0;overflow:auto}.ui-autocomplete{position:absolute;top:0;left:0;cursor:default}.ui-menu{list-style:none;padding:0;margin:0;display:block;outline:0}.ui-menu .ui-menu{position:absolute}.ui-menu .ui-menu-item{margin:0;cursor:pointer;list-style-image:url(https://sagecell.sagemath.org/static/"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7")}.ui-menu .ui-menu-item-wrapper{position:relative;padding:3px 1em 3px .4em}.ui-menu .ui-menu-divider{margin:5px 0;height:0;font-size:0;line-height:0;border-width:1px 0 0 0}.ui-menu .ui-state-focus,.ui-menu .ui-state-active{margin:-1px}.ui-menu-icons{position:relative}.ui-menu-icons .ui-menu-item-wrapper{padding-left:2em}.ui-menu .ui-icon{position:absolute;top:0;bottom:0;left:.2em;margin:auto 0}.ui-menu .ui-menu-icon{left:auto;right:0}.ui-button{padding:.4em 1em;display:inline-block;position:relative;line-height:normal;margin-right:.1em;cursor:pointer;vertical-align:middle;text-align:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;overflow:visible}.ui-button,.ui-button:link,.ui-button:visited,.ui-button:hover,.ui-button:active{text-decoration:none}.ui-button-icon-only{width:2em;box-sizing:border-box;text-indent:-9999px;white-space:nowrap}input.ui-button.ui-button-icon-only{text-indent:0}.ui-button-icon-only .ui-icon{position:absolute;top:50%;left:50%;margin-top:-8px;margin-left:-8px}.ui-button.ui-icon-notext .ui-icon{padding:0;width:2.1em;height:2.1em;text-indent:-9999px;white-space:nowrap}input.ui-button.ui-icon-notext .ui-icon{width:auto;height:auto;text-indent:0;white-space:normal;padding:.4em 1em}input.ui-button::-moz-focus-inner,button.ui-button::-moz-focus-inner{border:0;padding:0}.ui-controlgroup{vertical-align:middle;display:inline-block}.ui-controlgroup > .ui-controlgroup-item{float:left;margin-left:0;margin-right:0}.ui-controlgroup > .ui-controlgroup-item:focus,.ui-controlgroup > .ui-controlgroup-item.ui-visual-focus{z-index:9999}.ui-controlgroup-vertical > .ui-controlgroup-item{display:block;float:none;width:100%;margin-top:0;margin-bottom:0;text-align:left}.ui-controlgroup-vertical .ui-controlgroup-item{box-sizing:border-box}.ui-controlgroup .ui-controlgroup-label{padding:.4em 1em}.ui-controlgroup .ui-controlgroup-label span{font-size:80%}.ui-controlgroup-horizontal .ui-controlgroup-label + .ui-controlgroup-item{border-left:none}.ui-controlgroup-vertical .ui-controlgroup-label + .ui-controlgroup-item{border-top:none}.ui-controlgroup-horizontal .ui-controlgroup-label.ui-widget-content{border-right:none}.ui-controlgroup-vertical .ui-controlgroup-label.ui-widget-content{border-bottom:none}.ui-controlgroup-vertical .ui-spinner-input{width:75%;width:calc( 100% - 2.4em )}.ui-controlgroup-vertical .ui-spinner .ui-spinner-up{border-top-style:solid}.ui-checkboxradio-label .ui-icon-background{box-shadow:inset 1px 1px 1px #ccc;border-radius:.12em;border:none}.ui-checkboxradio-radio-label .ui-icon-background{width:16px;height:16px;border-radius:1em;overflow:visible;border:none}.ui-checkboxradio-radio-label.ui-checkboxradio-checked .ui-icon,.ui-checkboxradio-radio-label.ui-checkboxradio-checked:hover .ui-icon{background-image:none;width:8px;height:8px;border-width:4px;border-style:solid}.ui-checkboxradio-disabled{pointer-events:none}.ui-datepicker{width:17em;padding:.2em .2em 0;display:none}.ui-datepicker .ui-datepicker-header{position:relative;padding:.2em 0}.ui-datepicker .ui-datepicker-prev,.ui-datepicker .ui-datepicker-next{position:absolute;top:2px;width:1.8em;height:1.8em}.ui-datepicker .ui-datepicker-prev-hover,.ui-datepicker .ui-datepicker-next-hover{top:1px}.ui-datepicker .ui-datepicker-prev{left:2px}.ui-datepicker .ui-datepicker-next{right:2px}.ui-datepicker .ui-datepicker-prev-hover{left:1px}.ui-datepicker .ui-datepicker-next-hover{right:1px}.ui-datepicker .ui-datepicker-prev span,.ui-datepicker .ui-datepicker-next span{display:block;position:absolute;left:50%;margin-left:-8px;top:50%;margin-top:-8px}.ui-datepicker .ui-datepicker-title{margin:0 2.3em;line-height:1.8em;text-align:center}.ui-datepicker .ui-datepicker-title select{font-size:1em;margin:1px 0}.ui-datepicker select.ui-datepicker-month,.ui-datepicker select.ui-datepicker-year{width:45%}.ui-datepicker table{width:100%;font-size:.9em;border-collapse:collapse;margin:0 0 .4em}.ui-datepicker th{padding:.7em .3em;text-align:center;font-weight:bold;border:0}.ui-datepicker td{border:0;padding:1px}.ui-datepicker td span,.ui-datepicker td a{display:block;padding:.2em;text-align:right;text-decoration:none}.ui-datepicker .ui-datepicker-buttonpane{background-image:none;margin:.7em 0 0 0;padding:0 .2em;border-left:0;border-right:0;border-bottom:0}.ui-datepicker .ui-datepicker-buttonpane button{float:right;margin:.5em .2em .4em;cursor:pointer;padding:.2em .6em .3em .6em;width:auto;overflow:visible}.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current{float:left}.ui-datepicker.ui-datepicker-multi{width:auto}.ui-datepicker-multi .ui-datepicker-group{float:left}.ui-datepicker-multi .ui-datepicker-group table{width:95%;margin:0 auto .4em}.ui-datepicker-multi-2 .ui-datepicker-group{width:50%}.ui-datepicker-multi-3 .ui-datepicker-group{width:33.3%}.ui-datepicker-multi-4 .ui-datepicker-group{width:25%}.ui-datepicker-multi .ui-datepicker-group-last .ui-datepicker-header,.ui-datepicker-multi .ui-datepicker-group-middle .ui-datepicker-header{border-left-width:0}.ui-datepicker-multi .ui-datepicker-buttonpane{clear:left}.ui-datepicker-row-break{clear:both;width:100%;font-size:0}.ui-datepicker-rtl{direction:rtl}.ui-datepicker-rtl .ui-datepicker-prev{right:2px;left:auto}.ui-datepicker-rtl .ui-datepicker-next{left:2px;right:auto}.ui-datepicker-rtl .ui-datepicker-prev:hover{right:1px;left:auto}.ui-datepicker-rtl .ui-datepicker-next:hover{left:1px;right:auto}.ui-datepicker-rtl .ui-datepicker-buttonpane{clear:right}.ui-datepicker-rtl .ui-datepicker-buttonpane button{float:left}.ui-datepicker-rtl .ui-datepicker-buttonpane button.ui-datepicker-current,.ui-datepicker-rtl .ui-datepicker-group{float:right}.ui-datepicker-rtl .ui-datepicker-group-last .ui-datepicker-header,.ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-header{border-right-width:0;border-left-width:1px}.ui-datepicker .ui-icon{display:block;text-indent:-99999px;overflow:hidden;background-repeat:no-repeat;left:.5em;top:.3em}.ui-dialog{position:absolute;top:0;left:0;padding:.2em;outline:0}.ui-dialog .ui-dialog-titlebar{padding:.4em 1em;position:relative}.ui-dialog .ui-dialog-title{float:left;margin:.1em 0;white-space:nowrap;width:90%;overflow:hidden;text-overflow:ellipsis}.ui-dialog .ui-dialog-titlebar-close{position:absolute;right:.3em;top:50%;width:20px;margin:-10px 0 0 0;padding:1px;height:20px}.ui-dialog .ui-dialog-content{position:relative;border:0;padding:.5em 1em;background:none;overflow:auto}.ui-dialog .ui-dialog-buttonpane{text-align:left;border-width:1px 0 0 0;background-image:none;margin-top:.5em;padding:.3em 1em .5em .4em}.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset{float:right}.ui-dialog .ui-dialog-buttonpane button{margin:.5em .4em .5em 0;cursor:pointer}.ui-dialog .ui-resizable-n{height:2px;top:0}.ui-dialog .ui-resizable-e{width:2px;right:0}.ui-dialog .ui-resizable-s{height:2px;bottom:0}.ui-dialog .ui-resizable-w{width:2px;left:0}.ui-dialog .ui-resizable-se,.ui-dialog .ui-resizable-sw,.ui-dialog .ui-resizable-ne,.ui-dialog .ui-resizable-nw{width:7px;height:7px}.ui-dialog .ui-resizable-se{right:0;bottom:0}.ui-dialog .ui-resizable-sw{left:0;bottom:0}.ui-dialog .ui-resizable-ne{right:0;top:0}.ui-dialog .ui-resizable-nw{left:0;top:0}.ui-draggable .ui-dialog-titlebar{cursor:move}.ui-draggable-handle{-ms-touch-action:none;touch-action:none}.ui-resizable{position:relative}.ui-resizable-handle{position:absolute;font-size:0.1px;display:block;-ms-touch-action:none;touch-action:none}.ui-resizable-disabled .ui-resizable-handle,.ui-resizable-autohide .ui-resizable-handle{display:none}.ui-resizable-n{cursor:n-resize;height:7px;width:100%;top:-5px;left:0}.ui-resizable-s{cursor:s-resize;height:7px;width:100%;bottom:-5px;left:0}.ui-resizable-e{cursor:e-resize;width:7px;right:-5px;top:0;height:100%}.ui-resizable-w{cursor:w-resize;width:7px;left:-5px;top:0;height:100%}.ui-resizable-se{cursor:se-resize;width:12px;height:12px;right:1px;bottom:1px}.ui-resizable-sw{cursor:sw-resize;width:9px;height:9px;left:-5px;bottom:-5px}.ui-resizable-nw{cursor:nw-resize;width:9px;height:9px;left:-5px;top:-5px}.ui-resizable-ne{cursor:ne-resize;width:9px;height:9px;right:-5px;top:-5px}.ui-progressbar{height:2em;text-align:left;overflow:hidden}.ui-progressbar .ui-progressbar-value{margin:-1px;height:100%}.ui-progressbar .ui-progressbar-overlay{background:url(https://sagecell.sagemath.org/static/"data:image/gif;base64,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");height:100%;filter:alpha(opacity=25);opacity:0.25}.ui-progressbar-indeterminate .ui-progressbar-value{background-image:none}.ui-selectable{-ms-touch-action:none;touch-action:none}.ui-selectable-helper{position:absolute;z-index:100;border:1px dotted black}.ui-selectmenu-menu{padding:0;margin:0;position:absolute;top:0;left:0;display:none}.ui-selectmenu-menu .ui-menu{overflow:auto;overflow-x:hidden;padding-bottom:1px}.ui-selectmenu-menu .ui-menu .ui-selectmenu-optgroup{font-size:1em;font-weight:bold;line-height:1.5;padding:2px 0.4em;margin:0.5em 0 0 0;height:auto;border:0}.ui-selectmenu-open{display:block}.ui-selectmenu-text{display:block;margin-right:20px;overflow:hidden;text-overflow:ellipsis}.ui-selectmenu-button.ui-button{text-align:left;white-space:nowrap;width:14em}.ui-selectmenu-icon.ui-icon{float:right;margin-top:0}.ui-slider{position:relative;text-align:left}.ui-slider .ui-slider-handle{position:absolute;z-index:2;width:1.2em;height:1.2em;cursor:default;-ms-touch-action:none;touch-action:none}.ui-slider .ui-slider-range{position:absolute;z-index:1;font-size:.7em;display:block;border:0;background-position:0 0}.ui-slider.ui-state-disabled .ui-slider-handle,.ui-slider.ui-state-disabled .ui-slider-range{filter:inherit}.ui-slider-horizontal{height:.8em}.ui-slider-horizontal .ui-slider-handle{top:-.3em;margin-left:-.6em}.ui-slider-horizontal .ui-slider-range{top:0;height:100%}.ui-slider-horizontal .ui-slider-range-min{left:0}.ui-slider-horizontal .ui-slider-range-max{right:0}.ui-slider-vertical{width:.8em;height:100px}.ui-slider-vertical .ui-slider-handle{left:-.3em;margin-left:0;margin-bottom:-.6em}.ui-slider-vertical .ui-slider-range{left:0;width:100%}.ui-slider-vertical .ui-slider-range-min{bottom:0}.ui-slider-vertical .ui-slider-range-max{top:0}.ui-sortable-handle{-ms-touch-action:none;touch-action:none}.ui-spinner{position:relative;display:inline-block;overflow:hidden;padding:0;vertical-align:middle}.ui-spinner-input{border:none;background:none;color:inherit;padding:.222em 0;margin:.2em 0;vertical-align:middle;margin-left:.4em;margin-right:2em}.ui-spinner-button{width:1.6em;height:50%;font-size:.5em;padding:0;margin:0;text-align:center;position:absolute;cursor:default;display:block;overflow:hidden;right:0}.ui-spinner a.ui-spinner-button{border-top-style:none;border-bottom-style:none;border-right-style:none}.ui-spinner-up{top:0}.ui-spinner-down{bottom:0}.ui-tabs{position:relative;padding:.2em}.ui-tabs .ui-tabs-nav{margin:0;padding:.2em .2em 0}.ui-tabs .ui-tabs-nav li{list-style:none;float:left;position:relative;top:0;margin:1px .2em 0 0;border-bottom-width:0;padding:0;white-space:nowrap}.ui-tabs .ui-tabs-nav .ui-tabs-anchor{float:left;padding:.5em 1em;text-decoration:none}.ui-tabs .ui-tabs-nav li.ui-tabs-active{margin-bottom:-1px;padding-bottom:1px}.ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor,.ui-tabs .ui-tabs-nav li.ui-state-disabled .ui-tabs-anchor,.ui-tabs .ui-tabs-nav li.ui-tabs-loading .ui-tabs-anchor{cursor:text}.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor{cursor:pointer}.ui-tabs .ui-tabs-panel{display:block;border-width:0;padding:1em 1.4em;background:none}.ui-tooltip{padding:8px;position:absolute;z-index:9999;max-width:300px}body .ui-tooltip{border-width:2px}.ui-widget{font-family:Verdana,Arial,sans-serif;font-size:1.1em}.ui-widget .ui-widget{font-size:1em}.ui-widget input,.ui-widget select,.ui-widget textarea,.ui-widget button{font-family:Verdana,Arial,sans-serif;font-size:1em}.ui-widget.ui-widget-content{border:1px solid #d3d3d3}.ui-widget-content{border:1px solid #aaa;background:#fff;color:#222}.ui-widget-content a{color:#222}.ui-widget-header{border:1px solid #aaa;background:#ccc url(https://sagecell.sagemath.org/static/images/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x;color:#222;font-weight:bold}.ui-widget-header a{color:#222}.ui-state-default,.ui-widget-content .ui-state-default,.ui-widget-header .ui-state-default,.ui-button,html .ui-button.ui-state-disabled:hover,html .ui-button.ui-state-disabled:active{border:1px solid #d3d3d3;background:#e6e6e6 url(https://sagecell.sagemath.org/static/images/ui-bg_glass_75_e6e6e6_1x400.png) 50% 50% repeat-x;font-weight:normal;color:#555}.ui-state-default a,.ui-state-default a:link,.ui-state-default a:visited,a.ui-button,a:link.ui-button,a:visited.ui-button,.ui-button{color:#555;text-decoration:none}.ui-state-hover,.ui-widget-content .ui-state-hover,.ui-widget-header .ui-state-hover,.ui-state-focus,.ui-widget-content .ui-state-focus,.ui-widget-header .ui-state-focus,.ui-button:hover,.ui-button:focus{border:1px solid #999;background:#dadada url(https://sagecell.sagemath.org/static/images/ui-bg_glass_75_dadada_1x400.png) 50% 50% repeat-x;font-weight:normal;color:#212121}.ui-state-hover a,.ui-state-hover a:hover,.ui-state-hover a:link,.ui-state-hover a:visited,.ui-state-focus a,.ui-state-focus a:hover,.ui-state-focus a:link,.ui-state-focus a:visited,a.ui-button:hover,a.ui-button:focus{color:#212121;text-decoration:none}.ui-visual-focus{box-shadow:0 0 3px 1px rgb(94,158,214)}.ui-state-active,.ui-widget-content .ui-state-active,.ui-widget-header .ui-state-active,a.ui-button:active,.ui-button:active,.ui-button.ui-state-active:hover{border:1px solid #aaa;background:#fff url(https://sagecell.sagemath.org/static/images/ui-bg_glass_65_ffffff_1x400.png) 50% 50% repeat-x;font-weight:normal;color:#212121}.ui-icon-background,.ui-state-active .ui-icon-background{border:#aaa;background-color:#212121}.ui-state-active a,.ui-state-active a:link,.ui-state-active a:visited{color:#212121;text-decoration:none}.ui-state-highlight,.ui-widget-content .ui-state-highlight,.ui-widget-header .ui-state-highlight{border:1px solid #fcefa1;background:#fbf9ee url(https://sagecell.sagemath.org/static/images/ui-bg_glass_55_fbf9ee_1x400.png) 50% 50% repeat-x;color:#363636}.ui-state-checked{border:1px solid #fcefa1;background:#fbf9ee}.ui-state-highlight a,.ui-widget-content .ui-state-highlight a,.ui-widget-header .ui-state-highlight a{color:#363636}.ui-state-error,.ui-widget-content .ui-state-error,.ui-widget-header .ui-state-error{border:1px solid #cd0a0a;background:#fef1ec url(https://sagecell.sagemath.org/static/images/ui-bg_glass_95_fef1ec_1x400.png) 50% 50% repeat-x;color:#cd0a0a}.ui-state-error a,.ui-widget-content .ui-state-error a,.ui-widget-header .ui-state-error a{color:#cd0a0a}.ui-state-error-text,.ui-widget-content .ui-state-error-text,.ui-widget-header .ui-state-error-text{color:#cd0a0a}.ui-priority-primary,.ui-widget-content .ui-priority-primary,.ui-widget-header .ui-priority-primary{font-weight:bold}.ui-priority-secondary,.ui-widget-content .ui-priority-secondary,.ui-widget-header .ui-priority-secondary{opacity:.7;filter:Alpha(Opacity=70);font-weight:normal}.ui-state-disabled,.ui-widget-content .ui-state-disabled,.ui-widget-header .ui-state-disabled{opacity:.35;filter:Alpha(Opacity=35);background-image:none}.ui-state-disabled .ui-icon{filter:Alpha(Opacity=35)}.ui-icon{width:16px;height:16px}.ui-icon,.ui-widget-content .ui-icon{background-image:url(https://sagecell.sagemath.org/static/images/ui-icons_222222_256x240.png)}.ui-widget-header .ui-icon{background-image:url(https://sagecell.sagemath.org/static/images/ui-icons_222222_256x240.png)}.ui-state-hover .ui-icon,.ui-state-focus .ui-icon,.ui-button:hover .ui-icon,.ui-button:focus .ui-icon{background-image:url(https://sagecell.sagemath.org/static/images/ui-icons_454545_256x240.png)}.ui-state-active .ui-icon,.ui-button:active .ui-icon{background-image:url(https://sagecell.sagemath.org/static/images/ui-icons_454545_256x240.png)}.ui-state-highlight .ui-icon,.ui-button .ui-state-highlight.ui-icon{background-image:url(https://sagecell.sagemath.org/static/images/ui-icons_2e83ff_256x240.png)}.ui-state-error .ui-icon,.ui-state-error-text .ui-icon{background-image:url(https://sagecell.sagemath.org/static/images/ui-icons_cd0a0a_256x240.png)}.ui-button .ui-icon{background-image:url(https://sagecell.sagemath.org/static/images/ui-icons_888888_256x240.png)}.ui-icon-blank{background-position:16px 16px}.ui-icon-caret-1-n{background-position:0 0}.ui-icon-caret-1-ne{background-position:-16px 0}.ui-icon-caret-1-e{background-position:-32px 0}.ui-icon-caret-1-se{background-position:-48px 0}.ui-icon-caret-1-s{background-position:-65px 0}.ui-icon-caret-1-sw{background-position:-80px 0}.ui-icon-caret-1-w{background-position:-96px 0}.ui-icon-caret-1-nw{background-position:-112px 0}.ui-icon-caret-2-n-s{background-position:-128px 0}.ui-icon-caret-2-e-w{background-position:-144px 0}.ui-icon-triangle-1-n{background-position:0 -16px}.ui-icon-triangle-1-ne{background-position:-16px -16px}.ui-icon-triangle-1-e{background-position:-32px -16px}.ui-icon-triangle-1-se{background-position:-48px -16px}.ui-icon-triangle-1-s{background-position:-65px -16px}.ui-icon-triangle-1-sw{background-position:-80px -16px}.ui-icon-triangle-1-w{background-position:-96px -16px}.ui-icon-triangle-1-nw{background-position:-112px -16px}.ui-icon-triangle-2-n-s{background-position:-128px -16px}.ui-icon-triangle-2-e-w{background-position:-144px -16px}.ui-icon-arrow-1-n{background-position:0 -32px}.ui-icon-arrow-1-ne{background-position:-16px -32px}.ui-icon-arrow-1-e{background-position:-32px -32px}.ui-icon-arrow-1-se{background-position:-48px -32px}.ui-icon-arrow-1-s{background-position:-65px -32px}.ui-icon-arrow-1-sw{background-position:-80px -32px}.ui-icon-arrow-1-w{background-position:-96px -32px}.ui-icon-arrow-1-nw{background-position:-112px -32px}.ui-icon-arrow-2-n-s{background-position:-128px -32px}.ui-icon-arrow-2-ne-sw{background-position:-144px -32px}.ui-icon-arrow-2-e-w{background-position:-160px -32px}.ui-icon-arrow-2-se-nw{background-position:-176px -32px}.ui-icon-arrowstop-1-n{background-position:-192px -32px}.ui-icon-arrowstop-1-e{background-position:-208px -32px}.ui-icon-arrowstop-1-s{background-position:-224px -32px}.ui-icon-arrowstop-1-w{background-position:-240px -32px}.ui-icon-arrowthick-1-n{background-position:1px -48px}.ui-icon-arrowthick-1-ne{background-position:-16px -48px}.ui-icon-arrowthick-1-e{background-position:-32px -48px}.ui-icon-arrowthick-1-se{background-position:-48px -48px}.ui-icon-arrowthick-1-s{background-position:-64px -48px}.ui-icon-arrowthick-1-sw{background-position:-80px -48px}.ui-icon-arrowthick-1-w{background-position:-96px -48px}.ui-icon-arrowthick-1-nw{background-position:-112px -48px}.ui-icon-arrowthick-2-n-s{background-position:-128px -48px}.ui-icon-arrowthick-2-ne-sw{background-position:-144px -48px}.ui-icon-arrowthick-2-e-w{background-position:-160px -48px}.ui-icon-arrowthick-2-se-nw{background-position:-176px -48px}.ui-icon-arrowthickstop-1-n{background-position:-192px -48px}.ui-icon-arrowthickstop-1-e{background-position:-208px -48px}.ui-icon-arrowthickstop-1-s{background-position:-224px -48px}.ui-icon-arrowthickstop-1-w{background-position:-240px -48px}.ui-icon-arrowreturnthick-1-w{background-position:0 -64px}.ui-icon-arrowreturnthick-1-n{background-position:-16px -64px}.ui-icon-arrowreturnthick-1-e{background-position:-32px -64px}.ui-icon-arrowreturnthick-1-s{background-position:-48px -64px}.ui-icon-arrowreturn-1-w{background-position:-64px -64px}.ui-icon-arrowreturn-1-n{background-position:-80px -64px}.ui-icon-arrowreturn-1-e{background-position:-96px -64px}.ui-icon-arrowreturn-1-s{background-position:-112px -64px}.ui-icon-arrowrefresh-1-w{background-position:-128px -64px}.ui-icon-arrowrefresh-1-n{background-position:-144px -64px}.ui-icon-arrowrefresh-1-e{background-position:-160px -64px}.ui-icon-arrowrefresh-1-s{background-position:-176px -64px}.ui-icon-arrow-4{background-position:0 -80px}.ui-icon-arrow-4-diag{background-position:-16px -80px}.ui-icon-extlink{background-position:-32px -80px}.ui-icon-newwin{background-position:-48px -80px}.ui-icon-refresh{background-position:-64px -80px}.ui-icon-shuffle{background-position:-80px -80px}.ui-icon-transfer-e-w{background-position:-96px -80px}.ui-icon-transferthick-e-w{background-position:-112px -80px}.ui-icon-folder-collapsed{background-position:0 -96px}.ui-icon-folder-open{background-position:-16px -96px}.ui-icon-document{background-position:-32px -96px}.ui-icon-document-b{background-position:-48px -96px}.ui-icon-note{background-position:-64px -96px}.ui-icon-mail-closed{background-position:-80px -96px}.ui-icon-mail-open{background-position:-96px -96px}.ui-icon-suitcase{background-position:-112px -96px}.ui-icon-comment{background-position:-128px -96px}.ui-icon-person{background-position:-144px -96px}.ui-icon-print{background-position:-160px -96px}.ui-icon-trash{background-position:-176px -96px}.ui-icon-locked{background-position:-192px -96px}.ui-icon-unlocked{background-position:-208px -96px}.ui-icon-bookmark{background-position:-224px -96px}.ui-icon-tag{background-position:-240px -96px}.ui-icon-home{background-position:0 -112px}.ui-icon-flag{background-position:-16px -112px}.ui-icon-calendar{background-position:-32px -112px}.ui-icon-cart{background-position:-48px -112px}.ui-icon-pencil{background-position:-64px -112px}.ui-icon-clock{background-position:-80px -112px}.ui-icon-disk{background-position:-96px -112px}.ui-icon-calculator{background-position:-112px -112px}.ui-icon-zoomin{background-position:-128px -112px}.ui-icon-zoomout{background-position:-144px -112px}.ui-icon-search{background-position:-160px -112px}.ui-icon-wrench{background-position:-176px -112px}.ui-icon-gear{background-position:-192px -112px}.ui-icon-heart{background-position:-208px -112px}.ui-icon-star{background-position:-224px -112px}.ui-icon-link{background-position:-240px -112px}.ui-icon-cancel{background-position:0 -128px}.ui-icon-plus{background-position:-16px -128px}.ui-icon-plusthick{background-position:-32px -128px}.ui-icon-minus{background-position:-48px -128px}.ui-icon-minusthick{background-position:-64px -128px}.ui-icon-close{background-position:-80px -128px}.ui-icon-closethick{background-position:-96px -128px}.ui-icon-key{background-position:-112px -128px}.ui-icon-lightbulb{background-position:-128px -128px}.ui-icon-scissors{background-position:-144px -128px}.ui-icon-clipboard{background-position:-160px -128px}.ui-icon-copy{background-position:-176px -128px}.ui-icon-contact{background-position:-192px -128px}.ui-icon-image{background-position:-208px -128px}.ui-icon-video{background-position:-224px -128px}.ui-icon-script{background-position:-240px -128px}.ui-icon-alert{background-position:0 -144px}.ui-icon-info{background-position:-16px -144px}.ui-icon-notice{background-position:-32px -144px}.ui-icon-help{background-position:-48px -144px}.ui-icon-check{background-position:-64px -144px}.ui-icon-bullet{background-position:-80px -144px}.ui-icon-radio-on{background-position:-96px -144px}.ui-icon-radio-off{background-position:-112px -144px}.ui-icon-pin-w{background-position:-128px -144px}.ui-icon-pin-s{background-position:-144px -144px}.ui-icon-play{background-position:0 -160px}.ui-icon-pause{background-position:-16px -160px}.ui-icon-seek-next{background-position:-32px -160px}.ui-icon-seek-prev{background-position:-48px -160px}.ui-icon-seek-end{background-position:-64px -160px}.ui-icon-seek-start{background-position:-80px -160px}.ui-icon-seek-first{background-position:-80px -160px}.ui-icon-stop{background-position:-96px -160px}.ui-icon-eject{background-position:-112px -160px}.ui-icon-volume-off{background-position:-128px -160px}.ui-icon-volume-on{background-position:-144px -160px}.ui-icon-power{background-position:0 -176px}.ui-icon-signal-diag{background-position:-16px -176px}.ui-icon-signal{background-position:-32px -176px}.ui-icon-battery-0{background-position:-48px -176px}.ui-icon-battery-1{background-position:-64px -176px}.ui-icon-battery-2{background-position:-80px -176px}.ui-icon-battery-3{background-position:-96px -176px}.ui-icon-circle-plus{background-position:0 -192px}.ui-icon-circle-minus{background-position:-16px -192px}.ui-icon-circle-close{background-position:-32px -192px}.ui-icon-circle-triangle-e{background-position:-48px -192px}.ui-icon-circle-triangle-s{background-position:-64px -192px}.ui-icon-circle-triangle-w{background-position:-80px -192px}.ui-icon-circle-triangle-n{background-position:-96px -192px}.ui-icon-circle-arrow-e{background-position:-112px -192px}.ui-icon-circle-arrow-s{background-position:-128px -192px}.ui-icon-circle-arrow-w{background-position:-144px -192px}.ui-icon-circle-arrow-n{background-position:-160px -192px}.ui-icon-circle-zoomin{background-position:-176px -192px}.ui-icon-circle-zoomout{background-position:-192px -192px}.ui-icon-circle-check{background-position:-208px -192px}.ui-icon-circlesmall-plus{background-position:0 -208px}.ui-icon-circlesmall-minus{background-position:-16px -208px}.ui-icon-circlesmall-close{background-position:-32px -208px}.ui-icon-squaresmall-plus{background-position:-48px -208px}.ui-icon-squaresmall-minus{background-position:-64px -208px}.ui-icon-squaresmall-close{background-position:-80px -208px}.ui-icon-grip-dotted-vertical{background-position:0 -224px}.ui-icon-grip-dotted-horizontal{background-position:-16px -224px}.ui-icon-grip-solid-vertical{background-position:-32px -224px}.ui-icon-grip-solid-horizontal{background-position:-48px -224px}.ui-icon-gripsmall-diagonal-se{background-position:-64px -224px}.ui-icon-grip-diagonal-se{background-position:-80px -224px}.ui-corner-all,.ui-corner-top,.ui-corner-left,.ui-corner-tl{border-top-left-radius:4px}.ui-corner-all,.ui-corner-top,.ui-corner-right,.ui-corner-tr{border-top-right-radius:4px}.ui-corner-all,.ui-corner-bottom,.ui-corner-left,.ui-corner-bl{border-bottom-left-radius:4px}.ui-corner-all,.ui-corner-bottom,.ui-corner-right,.ui-corner-br{border-bottom-right-radius:4px}.ui-widget-overlay{background:#aaa;opacity:.3;filter:Alpha(Opacity=30)}.ui-widget-shadow{-webkit-box-shadow:-8px -8px 8px #aaa;box-shadow:-8px -8px 8px #aaa}
+.colorpicker {
+	width: 356px;
+	height: 176px;
+	overflow: hidden;
+	position: absolute;
+	background: url(https://sagecell.sagemath.org/static/colorpicker/images/colorpicker_background.png);
+	font-family: Arial, Helvetica, sans-serif;
+	display: none;
+}
+.colorpicker_color {
+	width: 150px;
+	height: 150px;
+	left: 14px;
+	top: 13px;
+	position: absolute;
+	background: #f00;
+	overflow: hidden;
+	cursor: crosshair;
+}
+.colorpicker_color div {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 150px;
+	height: 150px;
+	background: url(https://sagecell.sagemath.org/static/colorpicker/images/colorpicker_overlay.png);
+}
+.colorpicker_color div div {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 11px;
+	height: 11px;
+	overflow: hidden;
+	background: url(https://sagecell.sagemath.org/static/colorpicker/images/colorpicker_select.gif);
+	margin: -5px 0 0 -5px;
+}
+.colorpicker_hue {
+	position: absolute;
+	top: 13px;
+	left: 171px;
+	width: 35px;
+	height: 150px;
+	cursor: n-resize;
+}
+.colorpicker_hue div {
+	position: absolute;
+	width: 35px;
+	height: 9px;
+	overflow: hidden;
+	background: url(https://sagecell.sagemath.org/static/colorpicker/images/colorpicker_indic.gif) left top;
+	margin: -4px 0 0 0;
+	left: 0px;
+}
+.colorpicker_new_color {
+	position: absolute;
+	width: 60px;
+	height: 30px;
+	left: 213px;
+	top: 13px;
+	background: #f00;
+}
+.colorpicker_current_color {
+	position: absolute;
+	width: 60px;
+	height: 30px;
+	left: 283px;
+	top: 13px;
+	background: #f00;
+}
+.colorpicker input {
+	background-color: transparent;
+	border: 1px solid transparent;
+	position: absolute;
+	font-size: 10px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #898989;
+	top: 4px;
+	right: 11px;
+	text-align: right;
+	margin: 0;
+	padding: 0;
+	height: 11px;
+}
+.colorpicker_hex {
+	position: absolute;
+	width: 72px;
+	height: 22px;
+	background: url(https://sagecell.sagemath.org/static/colorpicker/images/colorpicker_hex.png) top;
+	left: 212px;
+	top: 142px;
+}
+.colorpicker_hex input {
+	right: 6px;
+}
+.colorpicker_field {
+	height: 22px;
+	width: 62px;
+	background-position: top;
+	position: absolute;
+}
+.colorpicker_field span {
+	position: absolute;
+	width: 12px;
+	height: 22px;
+	overflow: hidden;
+	top: 0;
+	right: 0;
+	cursor: n-resize;
+}
+.colorpicker_rgb_r {
+	background-image: url(https://sagecell.sagemath.org/static/colorpicker/images/colorpicker_rgb_r.png);
+	top: 52px;
+	left: 212px;
+}
+.colorpicker_rgb_g {
+	background-image: url(https://sagecell.sagemath.org/static/colorpicker/images/colorpicker_rgb_g.png);
+	top: 82px;
+	left: 212px;
+}
+.colorpicker_rgb_b {
+	background-image: url(https://sagecell.sagemath.org/static/colorpicker/images/colorpicker_rgb_b.png);
+	top: 112px;
+	left: 212px;
+}
+.colorpicker_hsb_h {
+	background-image: url(https://sagecell.sagemath.org/static/colorpicker/images/colorpicker_hsb_h.png);
+	top: 52px;
+	left: 282px;
+}
+.colorpicker_hsb_s {
+	background-image: url(https://sagecell.sagemath.org/static/colorpicker/images/colorpicker_hsb_s.png);
+	top: 82px;
+	left: 282px;
+}
+.colorpicker_hsb_b {
+	background-image: url(https://sagecell.sagemath.org/static/colorpicker/images/colorpicker_hsb_b.png);
+	top: 112px;
+	left: 282px;
+}
+.colorpicker_submit {
+	position: absolute;
+	width: 22px;
+	height: 22px;
+	background: url(https://sagecell.sagemath.org/static/colorpicker/images/colorpicker_submit.png) top;
+	left: 322px;
+	top: 142px;
+	overflow: hidden;
+}
+.colorpicker_focus {
+	background-position: center;
+}
+.colorpicker_hex.colorpicker_focus {
+	background-position: bottom;
+}
+.colorpicker_submit.colorpicker_focus {
+	background-position: bottom;
+}
+.colorpicker_slider {
+	background-position: bottom;
+}
+/*!
+ *  Font Awesome 3.0.2
+ *  the iconic font designed for use with Twitter Bootstrap
+ *  -------------------------------------------------------
+ *  The full suite of pictographic icons, examples, and documentation
+ *  can be found at: http://fortawesome.github.com/Font-Awesome/
+ *
+ *  License
+ *  -------------------------------------------------------
+ *  - The Font Awesome font is licensed under the SIL Open Font License - http://scripts.sil.org/OFL
+ *  - Font Awesome CSS, LESS, and SASS files are licensed under the MIT License -
+ *    http://opensource.org/licenses/mit-license.html
+ *  - The Font Awesome pictograms are licensed under the CC BY 3.0 License - http://creativecommons.org/licenses/by/3.0/
+ *  - Attribution is no longer required in Font Awesome 3.0, but much appreciated:
+ *    "Font Awesome by Dave Gandy - http://fortawesome.github.com/Font-Awesome"
+ *  Contact
+ *  -------------------------------------------------------
+ *  Email: dave@davegandy.com
+ *  Twitter: http://twitter.com/fortaweso_me
+ *  Work: Lead Product Designer @ http://kyruus.com
+ */
+@font-face {
+  font-family: 'FontAwesomeSagecell';
+  src: url(https://sagecell.sagemath.org/static/fontawesome-webfont.eot?v=3.0.1);
+  src: url(https://sagecell.sagemath.org/static/fontawesome-webfont.eot?#iefix&v=3.0.1) format('embedded-opentype'),
+    url(https://sagecell.sagemath.org/static/fontawesome-webfont.woff?v=3.0.1) format('woff'),
+    url(https://sagecell.sagemath.org/static/fontawesome-webfont.ttf?v=3.0.1) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+.sagecell [class^="sagecell_icon-"],
+.sagecell [class*=" sagecell_icon-"] {
+  font-family: FontAwesomeSagecell;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: inherit;
+  -webkit-font-smoothing: antialiased;
+  font-size: 125%;
+  background: transparent;
+  
+  display: inline;
+  width: auto;
+  height: auto;
+  line-height: normal;
+  vertical-align: baseline;
+  margin-top: 0;
+}
+.sagecell [class^="sagecell_icon-"]:before,
+.sagecell [class*=" sagecell_icon-"]:before {
+  text-decoration: inherit;
+  display: inline-block;
+  speak: none;
+}
+.sagecell .sagecell_icon-resize-full:before		{ content: "\f021"; }
+.sagecell .sagecell_icon-resize-small:before		{ content: "\f022"; }
+.sagecell_messages div {
+    margin-bottom: 12pt;
+}
+.sagecell_sliderControl {
+    max-width: 40em;
+    margin-right: 1.0em;
+    margin-left: 0.5em;
+}
+.sagecell_multiSliderContainer {
+    margin-left: 1.0em;
+    whitespace: nowrap;
+}
+.sagecell_multiSliderControl {
+    display: inline-block;
+    margin-right: 0.5em;
+    margin-left: 0.5em;
+    margin-top: 0.25em;
+}
+.sagecell_colorSelector {
+    display: inline-block;
+    width: 2em;
+    height: 2em;
+    border: 2px solid gray;
+    border-radius: 3px;
+    padding: 1px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+.sagecell .error, .sagecell .stderr {
+    color: red;
+}
+.sagecell .colorpicker {
+    z-index: 10;
+}
+.sagecell .CodeMirror {
+    border: 1px solid;
+    height: auto;
+}
+.sagecell .CodeMirror-scroll {
+    min-height: 3em;
+    max-height: 14em;
+}
+.sagecell .CodeMirror-fullscreen .CodeMirror-scroll {
+    max-height: none;
+}
+.sagecell .CodeMirror-hints {
+    padding-right: 10px;
+}
+.sagecell .ui-dialog-content {
+    font-size: 80%;
+}
+.sagecell_input {
+    overflow: hidden;
+    padding-right: 2px;
+}
+.sagecell button.sagecell_evalButton {
+    cursor: default;
+}
+.sagecell_output {
+    padding-right: 2px;
+}
+.sagecell_output_elements {
+    margin-top: 0.5em;
+}
+.sagecell_permalink {
+    padding-right: 5px;
+    text-align: right;
+    position: relative;
+}
+.sagecell_permalink_result {
+    position: absolute;
+    padding-right: 5px;
+    text-align: right;
+    right: 3px;
+    z-index: 100;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 5px;
+}
+.sagecell_permalink_result a:not([href]) {
+    color: gray;
+    text-decoration: none;
+    cursor: default;
+}
+.sagecell_permalink_result img {
+    display: inline-block;
+    background-color: lightgray;
+    width: 200px;
+    height: 200px;
+}
+.sagecell_sessionContainer {
+    position: relative;
+}
+.sagecell_sessionContainer:after {
+    display: table;
+    content: " ";
+    clear: both;
+}
+.sagecell_sessionOutput {
+    position: relative;
+    border: 2px solid;
+    padding: 5px;
+    margin-top: 2px;
+    min-height: 16px;
+    overflow-x: auto;
+}
+.sagecell_sessionOutput pre {
+    margin: 0px;
+}
+.sagecell_sessionOutput.sagecell_active {
+    border-color: #080;
+}
+.sagecell_poweredBy {
+    float: right;
+    padding: 3px 5px 5px 0px;
+    text-align: right;
+    overflow: visible;
+    font-size: 80%;
+}
+.sagecell_poweredBy img {
+    vertical-align: -5px;
+    border-style: none;
+    text-decoration: none;
+}
+.sagecell_spinner {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+.sagecell_sessionFiles {
+    width: 80%;
+    padding-bottom: 1.0em;
+}
+.sagecell_interactContainer {
+    position: relative;
+    padding: 15px 5px 5px 5px;
+    border: 2px solid lightgray;
+    margin-bottom: 2px;
+}
+.sagecell_bookmarks {
+    cursor: default;
+}
+.sagecell_interactContainer .sagecell_bookmarks {
+    position: absolute;
+    right: 3px;
+    top: 3px;
+}
+.sagecell_bookmarks div {
+    display: inline-block;
+    height: 1.5em;
+    vertical-align: bottom;
+    overflow-y: hidden;
+    font-size: 1.3em;
+    font-family: Arial;
+    color: #8c8c8c;
+    transition: color 0.25s ease-out;
+}
+.sagecell_bookmarks div:first-child {
+    color: transparent;
+    visibility: hidden;
+}
+.sagecell_bookmarks div:last-child {
+    margin-left: 10px;
+    width: 1.5em;
+}
+.sagecell_bookmarks div:last-child:before {
+    display: inline-block;
+    content: "\2605";
+}
+.sagecell_bookmarks div.sagecell_export {
+    visibility: visible;
+    transition: color 0.5s 0.5s;
+    color: inherit;
+    cursor: pointer;
+}
+.sagecell_export:before {
+    content: "\22ef";
+}
+.sagecell_bookmarks input {
+    border: 1px solid black;
+    border-radius: 3px;
+    vertical-align: 50%;
+    background-color: rgba(0, 0, 0, 0.1);
+    font-family: monospace;
+}
+.sagecell_sessionOutput.sagecell_active .sagecell_bookmarks div:last-child:hover {
+    color: #ffa500;
+    cursor: pointer;
+}
+.sagecell_bookmarks_list.ui-menu {
+    display: inline-block;
+    min-width: 15em;
+    cursor: default;
+    z-index: 99;
+}
+.sagecell_bookmarks_list.ui-menu li.ui-state-disabled {
+    opacity: 1;
+    margin: 0px;
+}
+.sagecell_bookmarks_list > li > a > input,
+.sagecell_bookmarks_list > li > a > div:first-child {
+    display: inline-block;
+    width: 85%;
+    border: none;
+    border-radius: 3px;
+}
+.sagecell_bookmarks_list > li > a > div:last-child {
+    float: right;
+    width: 1.5em;
+    text-align: center;
+    font-weight: bold;
+    color: #777;
+    cursor: pointer;
+    transition: 0.25s color;
+}
+.sagecell_bookmarks_list > li:not(:last-child):not(:hover) > a > div:last-child {
+     display: none;
+}
+.sagecell_bookmarks_list > li > a > div:last-child:hover {
+    color: darkred;
+}
+.sagecell_bookmarks_list > li > a > div:last-child:before {
+    content: "\2716";
+}
+.sagecell_bookmarks_list > li:last-child > a > div:hover {
+    color: darkblue;
+}
+.sagecell_bookmarks_list > li:last-child > a > div:before {
+    content: "+";
+}
+.sagecell_interactOutput {
+    padding: 10px;
+    padding-right: 2em;
+    padding-left: 2em;
+    overflow-x: auto;
+    vertical-align: top;
+}
+.sagecell_interactValueBox {
+    border: 1px solid transparent;
+    background-color: transparent;
+    vertical-align: baseline;
+    font-family: monospace;  
+    max-width: 10ex;
+}
+.sagecell_interactValueBox:hover {
+    border-color: lightgray;
+}
+.sagecell_interactValueBox:focus {
+    border-color: gray;
+}
+.sagecell_interactControlCell {
+    display: inline-table;
+    vertical-align: top;
+    min-width: 200px;
+}
+.sagecell_interactControlLabel {
+    display: table-cell;
+    text-align: right !important;
+    vertical-align: middle !important;
+    padding-right: 0.5ex !important;
+    padding-top: 0.6ex !important;
+    padding-bottom: 0.6ex !important;
+    min-width: 10ex;
+    overflow-wrap: break-word;
+}
+.sagecell_interactControl {
+    display: table-cell;
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+}
+.sagecell_interactContainer .sagecell_interactControl {
+    
+    padding: 1ex;
+}
+.sagecell_sliderContainer {
+    display: table;
+    width: 100%;
+    height: 100%;
+    max-width: 700px;
+    min-width: 200px;
+}
+.sagecell_sliderContainer > div:first-child {
+    display: table-cell;
+    width: 100%;
+    vertical-align: middle;
+}
+.sagecell_sliderContainer > div:first-child + div {
+    display: table-cell;
+    min-width: 11ex;
+}
+.sagecell_interactTextbox[size="0"] {
+    width: 100%;
+    max-width: 40em;
+}
+.sagecell_dirtyControl {
+    box-shadow: 0px 0px 2px 1px #c00;
+    transition: box-shadow 1s;
+    border-radius: 2px;
+}
+.sagecell_commands, .sagecell .ui-widget .sagecell_commands {
+    width: 100%;
+    height: 200px;
+    border: 1px solid;
+    font-family: monospace;
+    font-size: 10pt;
+}
+.sagecell_editor {
+    margin-bottom: 8px;
+}
+.sagecell_options {
+    display: inline-block;
+    margin-right: 2px;
+    float: right;
+    text-align: right;
+    font-size: 80%;
+}
+.sagecell_fullScreen {
+    position: absolute;
+    right: 1.5em;
+    top: 0.5em;
+    z-index: 10;
+    padding: 2px;
+    color: rgb(128,128,128);
+}
+.sagecell_editor div.ui-accordion-content.ui-helper-reset {
+    padding: 1em 0.5em;
+    font-size: 90.9%;
+}
+.sagecell_advancedFrame {
+    border-radius: 5px;
+    background-color: #ddf;
+    border: 1px solid;
+    padding: 0.2em;
+    display: inline-block;
+    width: 300px;
+    overflow: hidden;
+    margin-left: 3em;
+    margin-bottom: 1em;
+    vertical-align: top;
+}
+.sagecell_advancedTitle {
+    cursor: default;
+}
+.sagecell_advancedFields {
+    border: 1px solid gray;
+    background-color: white;
+    padding: 5px;
+}
+.sagecell_fileList li {
+    list-style: none;
+    position: relative;
+}
+.sagecell_fileName {
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+    width: 230px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.sagecell_deleteButton {
+    position: absolute;
+    left: -1.2em;
+    cursor: pointer;
+    margin-right: 5px;
+}
+.sagecell_deleteButton:hover {
+    color: red;
+}
+.sagecell_deleteButton:active {
+    color: darkred;
+}
+.sagecell_deleteButton:before {
+    content: "\2716";
+}
+.sagecell table.table_form tr.row-a {
+    background-color: #f8f8f8;
+}
+.sagecell table.table_form tr.row-b {
+    background-color: #efefef;
+}
+.sagecell table.table_form td {
+    padding: 5px 15px;
+    color: #00a;
+}
+.sagecell .sagecell-templates .hide {
+ display: none;   
+}
+.sagecell .sagecell-templates .pull-right {
+    float: right;
+}
+.sagecell .sagecell-templates .lighten {
+    color: gray;
+}
+.sagecell .ansi-black-fg {color: #3E424D;}
+.sagecell .ansi-black-bg {background-color: #3E424D;}
+.sagecell .ansi-black-intense-fg {color: #282C36;}
+.sagecell .ansi-black-intense-bg {background-color: #282C36;}
+.sagecell .ansi-red-fg {color: #E75C58;}
+.sagecell .ansi-red-bg {background-color: #E75C58;}
+.sagecell .ansi-red-intense-fg {color: #B22B31;}
+.sagecell .ansi-red-intense-bg {background-color: #B22B31;}
+.sagecell .ansi-green-fg {color: #00A250;}
+.sagecell .ansi-green-bg {background-color: #00A250;}
+.sagecell .ansi-green-intense-fg {color: #007427;}
+.sagecell .ansi-green-intense-bg {background-color: #007427;}
+.sagecell .ansi-yellow-fg {color: #DDB62B;}
+.sagecell .ansi-yellow-bg {background-color: #DDB62B;}
+.sagecell .ansi-yellow-intense-fg {color: #B27D12;}
+.sagecell .ansi-yellow-intense-bg {background-color: #B27D12;}
+.sagecell .ansi-blue-fg {color: #208FFB;}
+.sagecell .ansi-blue-bg {background-color: #208FFB;}
+.sagecell .ansi-blue-intense-fg {color: #0065CA;}
+.sagecell .ansi-blue-intense-bg {background-color: #0065CA;}
+.sagecell .ansi-magenta-fg {color: #D160C4;}
+.sagecell .ansi-magenta-bg {background-color: #D160C4;}
+.sagecell .ansi-magenta-intense-fg {color: #A03196;}
+.sagecell .ansi-magenta-intense-bg {background-color: #A03196;}
+.sagecell .ansi-cyan-fg {color: #60C6C8;}
+.sagecell .ansi-cyan-bg {background-color: #60C6C8;}
+.sagecell .ansi-cyan-intense-fg {color: #258F8F;}
+.sagecell .ansi-cyan-intense-bg {background-color: #258F8F;}
+.sagecell .ansi-white-fg {color: #C5C1B4;}
+.sagecell .ansi-white-bg {background-color: #C5C1B4;}
+.sagecell .ansi-white-intense-fg {color: #A1A6B2;}
+.sagecell .ansi-white-intense-bg {background-color: #A1A6B2;}
+.sagecell .ansi-default-inverse-fg {color: #FFFFFF;}
+.sagecell .ansi-default-inverse-bg {background-color: #000000;}
+.sagecell .ansi-bold {font-weight: bold;}
+.sagecell .ansi-underline {text-decoration: underline;}
+</style><script type="text/javascript">window.MathJax = {
+        tex: {
+          inlineMath: [["$", "$"], ["\\(", "\\)"]],
+          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+          processEscapes: true,
+          processEnvironments: true,
+        },
+        options: {
+          renderActions: { /* remove when dropping MathJax2 compatibility */
+            find_script_mathtex: [10, function (doc) {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+              }
+            }, '']
+          }
+        }
+    };</script><script type="text/javascript" src="./Model_Belyi_files/tex-chtml-full.js.télécharger"></script><script type="text/javascript" async="" src="./Model_Belyi_files/ga.js.télécharger"></script><script src="./Model_Belyi_files/es5-shim.min.js.télécharger"></script>
+        <script src="./Model_Belyi_files/marked.min.js.télécharger"></script>
+        <script src="./Model_Belyi_files/purify.min.js.télécharger"></script>
+        <script src="./Model_Belyi_files/ansi_up.min.js.télécharger"></script>
+        <script src="./Model_Belyi_files/prism.min.js.télécharger"></script>
+        <script src="./Model_Belyi_files/katex.min.js.télécharger"></script>
+        <script src="./Model_Belyi_files/katex-auto-render.min.js.télécharger"></script>
+        <script src="./Model_Belyi_files/notebook.min.js.télécharger"></script>
+        <link href="./Model_Belyi_files/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <link rel="stylesheet" href="./Model_Belyi_files/katex.min.css">
+        <link rel="stylesheet" href="./Model_Belyi_files/prism.css">
+        <link rel="stylesheet" href="./Model_Belyi_files/notebook.css">
+        <link rel="stylesheet" href="./Model_Belyi_files/nbpreview.css">
+        <link rel="stylesheet" href="./Model_Belyi_files/nbplayer.css">
+        <link rel="stylesheet" href="./Model_Belyi_files/custom.css">
+
+    <style type="text/css">.CtxtMenu_InfoClose {  top:.2em; right:.2em;}
+.CtxtMenu_InfoContent {  overflow:auto; text-align:left; font-size:80%;  padding:.4em .6em; border:1px inset; margin:1em 0px;  max-height:20em; max-width:30em; background-color:#EEEEEE;  white-space:normal;}
+.CtxtMenu_Info.CtxtMenu_MousePost {outline:none;}
+.CtxtMenu_Info {  position:fixed; left:50%; width:auto; text-align:center;  border:3px outset; padding:1em 2em; background-color:#DDDDDD;  color:black;  cursor:default; font-family:message-box; font-size:120%;  font-style:normal; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 15px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius:15px;               /* Safari and Chrome */  -moz-border-radius:15px;                  /* Firefox */  -khtml-border-radius:15px;                /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */  filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true"); /* IE */}
+</style><style type="text/css">.CtxtMenu_MenuClose {  position:absolute;  cursor:pointer;  display:inline-block;  border:2px solid #AAA;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  font-family: "Courier New", Courier;  font-size:24px;  color:#F0F0F0}
+.CtxtMenu_MenuClose span {  display:block; background-color:#AAA; border:1.5px solid;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  line-height:0;  padding:8px 0 6px     /* may need to be browser-specific */}
+.CtxtMenu_MenuClose:hover {  color:white!important;  border:2px solid #CCC!important}
+.CtxtMenu_MenuClose:hover span {  background-color:#CCC!important}
+.CtxtMenu_MenuClose:hover:focus {  outline:none}
+</style><style type="text/css">.CtxtMenu_Menu {  position:absolute;  background-color:white;  color:black;  width:auto; padding:5px 0px;  border:1px solid #CCCCCC; margin:0; cursor:default;  font: menu; text-align:left; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 5px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius: 5px;             /* Safari and Chrome */  -moz-border-radius: 5px;                /* Firefox */  -khtml-border-radius: 5px;              /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */}
+.CtxtMenu_MenuItem {  padding: 1px 2em;  background:transparent;}
+.CtxtMenu_MenuArrow {  position:absolute; right:.5em; padding-top:.25em; color:#666666;  font-family: null; font-size: .75em}
+.CtxtMenu_MenuActive .CtxtMenu_MenuArrow {color:white}
+.CtxtMenu_MenuArrow.CtxtMenu_RTL {left:.5em; right:auto}
+.CtxtMenu_MenuCheck {  position:absolute; left:.7em;  font-family: null}
+.CtxtMenu_MenuCheck.CtxtMenu_RTL { right:.7em; left:auto }
+.CtxtMenu_MenuRadioCheck {  position:absolute; left: .7em;}
+.CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {  right: .7em; left:auto}
+.CtxtMenu_MenuInputBox {  padding-left: 1em; right:.5em; color:#666666;  font-family: null;}
+.CtxtMenu_MenuInputBox.CtxtMenu_RTL {  left: .1em;}
+.CtxtMenu_MenuComboBox {  left:.1em; padding-bottom:.5em;}
+.CtxtMenu_MenuSlider {  left: .1em;}
+.CtxtMenu_SliderValue {  position:absolute; right:.1em; padding-top:.25em; color:#333333;  font-size: .75em}
+.CtxtMenu_SliderBar {  outline: none; background: #d3d3d3}
+.CtxtMenu_MenuLabel {  padding: 1px 2em 3px 1.33em;  font-style:italic}
+.CtxtMenu_MenuRule {  border-top: 1px solid #DDDDDD;  margin: 4px 3px;}
+.CtxtMenu_MenuDisabled {  color:GrayText}
+.CtxtMenu_MenuActive {  background-color: #606872;  color: white;}
+.CtxtMenu_MenuDisabled:focus {  background-color: #E8E8E8}
+.CtxtMenu_MenuLabel:focus {  background-color: #E8E8E8}
+.CtxtMenu_ContextMenu:focus {  outline:none}
+.CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {  outline:none}
+.CtxtMenu_SelectionMenu {  position:relative; float:left;  border-bottom: none; -webkit-box-shadow:none; -webkit-border-radius:0px; }
+.CtxtMenu_SelectionItem {  padding-right: 1em;}
+.CtxtMenu_Selection {  right: 40%; width:50%; }
+.CtxtMenu_SelectionBox {  padding: 0em; max-height:20em; max-width: none;  background-color:#FFFFFF;}
+.CtxtMenu_SelectionDivider {  clear: both; border-top: 2px solid #000000;}
+.CtxtMenu_Menu .CtxtMenu_MenuClose {  top:-10px; left:-10px}
+</style><style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+</style><style type="text/css">.output_116d085da0604682902a373d7ae10bba .sagecell_messages, .output_116d085da0604682902a373d7ae10bba .sagecell_permalink {display: none;}</style><style type="text/css">.output_da7b7900fdc44dcd9373209a1dd4dba9 .sagecell_messages, .output_da7b7900fdc44dcd9373209a1dd4dba9 .sagecell_permalink {display: none;}</style><style type="text/css">.output_25db0b35170f4968b627249163405225 .sagecell_messages, .output_25db0b35170f4968b627249163405225 .sagecell_permalink {display: none;}</style></head>
+    <body><div id="navbar" class="sticky"><a href="https://dahn-research.eu/nbplayer/#" role="button" id="read-button" class="btn btn-primary" onclick="setView()">Read</a><a href="https://dahn-research.eu/nbplayer/#" role="button" id="execute-button" class="btn btn-primary" onclick="setExecute()">Execute</a><a href="https://dahn-research.eu/nbplayer/#" role="button" class="btn btn-primary" onclick="toggleInput()">Show / Hide Code</a>
+  <a href="https://dahn-research.eu/nbplayer/#" role="button" class="btn btn-primary" onclick="saveHtml()">Save</a>
+  <a id="evalWarning" href="https://dahn-research.eu/nbplayer/#" role="button" class="btn btn-warning" style="">Execute Cells in the Sequence Given!</a>
+  <img src="./Model_Belyi_files/logo.png" width="45px" style="float:right;">
+  </div>
+        <div id="main" class="belowMenu">
+            
+            
+            
+            <div id="notebook-holder"><div class="nb-notebook"><div class="nb-worksheet"><div class="nb-cell nb-markdown-cell"><h2 id="programme-de-calcul-du-modèle-semi-stable">Programme de calcul du modèle semi-stable</h2>
+</div><div class="nb-cell nb-markdown-cell"><p>On calcul le modèle semi-stable pour les polynôme de Belyi:
+<span><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>B</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mi>X</mi><mi>a</mi></msup><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>X</mi><msup><mo stretchy="false">)</mo><mi>b</mi></msup></mrow><annotation encoding="application/x-tex"> B(X)=X^a(1-X)^b </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathnormal" style="margin-right: 0.05017em;">B</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right: 0.07847em;">X</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right: 0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.714392em;"><span class="" style="top: -3.113em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">a</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 1.14911em; vertical-align: -0.25em;"></span><span class="mord mathnormal" style="margin-right: 0.07847em;">X</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.899108em;"><span class="" style="top: -3.113em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">b</span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+</div><div class="nb-cell nb-markdown-cell"><p>Cellule à exécuter: définition des fonctions</p>
+</div><div class="nb-cell nb-code-cell"><div class="nb-input" data-prompt-number="1" style="display: none;"><pre class=" language-sage"><code class=" language-sage" data-language="sage">def epais(L):
+    I=L[-1::-1]
+    J=[]
+    for i in I:
+        if i&lt;0:
+            J.append(-i)
+    K=[J[0]]
+    for j in range(1,len(J)):
+        K.append(J[j]-J[j-1])
+    return K
+
+def nbRed(vert):
+    for c in vert:
+        if c[1]==0:
+            return c[0]
+
+def Belyi(a,b,p):
+    n=a+b
+    c=a/n
+    l=a^a*b^b/n^n
+    X=var('X')
+    B=X^a*(1-X)^b
+    
+    """print("Etude du polynôme de Belyi B(X):")
+    show(B)
+    print("Sommet noir central a/n:")
+    view("a/n")
+    show(c)
+    print("Valeur critique non nulle lambda:")
+    show(l)"""
+
+    G=Graph()
+    G.weighted(True)
+
+    K.&lt;al&gt;=Qp(p)
+    R.&lt;x&gt;=ZZ[]
+    
+    B1=B-l
+    D=B1.polynomial(K)
+
+    print("Etude au voisinage de 0: polygone de Newton de B(X)-lambda")
+    show(plot((D.newton_polygon()),figsize=3))
+    NP=D.newton_polygon()
+    SNP=NP.slopes(repetition=False)
+    
+    v=QQ.valuation(p)
+    if v(a/n)&lt;0:
+        S="Inf"
+        print("Le sommet central (de multiplicité 2) a/n et ", nbRed(NP.vertices())-2, "sommets avec lui se réduisent sur l'infini (ie I) avec une valuation de ", abs(SNP[0]),"\n")
+    elif v(a/n)&gt;0:
+        S="Z"
+        print("Le sommet central (de multiplicité 2) a/n et ", nbRed(NP.vertices())-2, "sommets avec lui se réduisent sur 0 (ie Z) avec une valuation de ", abs(SNP[0]),"\n")
+    else:
+        S="B"
+        print("Le sommet central a/n ainsi que tous les autres sommets noirs sont inversibles\n")
+        
+    if (SNP[0]&lt;0):
+        G.add_edge(("B","Z",-SNP[0]))
+    if(SNP[0]&gt;0):
+        G.add_edge(("B","Inf",SNP[0])) 
+
+    if (SNP[0]!=0):
+        print("Création du graphe:")
+        show(G.plot(edge_labels=True),figsize=3)
+    
+    if v(a/n)&gt;0:
+        B4=B.substitute({X:1+X})-l
+        D=B4.polynomial(K)
+        print("Etude au voisinage de 1: polygone de Newton de B(1+X)-lambda")
+        NP=D.newton_polygon()
+        show(plot(NP),figsize=3)
+        SNP=NP.slopes(repetition=False)
+        if SNP[0]&lt;0:
+            G.add_edge(("B","I",-SNP[0]))
+            print("Il y a ", nbRed(NP.vertices()), "sommets se réduisent sur 1 avec une valuation de ", -SNP[0], "\n")
+            print("Complétion du graphe:")
+            show(G.plot(edge_labels=True),figsize=4)
+        else:
+            print("Rien à rajouter au graphe.\n")
+
+    
+    B2=B.substitute({X:a/n*X})*(n/a)^a*(n/b)^b
+    B3=B2.substitute({X:1+X})-1
+    D=B3.polynomial(K)
+
+    print("Etude au voisinage du sommet central a/n:")
+    NP=D(x).newton_polygon()
+    show(plot(NP),figsize=3)
+    print(NP.vertices(),"\n\n")
+
+    SNP=NP.slopes(repetition=False)
+    Pe=epais(SNP)
+    print("Proximité des sommets se réduisant sur a/n -&gt; opposé de ", SNP, "\n")
+    if (Pe!=[]):
+        G.add_edge((S,0,Pe[0]))
+    i=0
+    for s in Pe[1:]:
+        G.add_edge((i,i+1,s))
+        i+=1
+
+    print("Graphe final pour:\n")
+    show(B)
+    show(G.plot(edge_labels=True),figsize=4)</code></pre></div>
+  <div class="compute sagecell output_116d085da0604682902a373d7ae10bba" style=""><div class="sagecell_input">
+  <div class="sagecell_editor">
+    <textarea class="sagecell_commands" autocapitalize="off" autocomplete="off" autocorrect="off" inputmode="verbatim" x-inputmode="verbatim" style="display: none;"></textarea><div class="CodeMirror cm-s-default"><button title="Toggle full-screen editor (F11)" type="button" class="sagecell_fullScreen sagecell_icon-resize-full" style="display: none;"></button><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5px; left: 48px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" tabindex="-1" cm-not-content="true" style="display: block; bottom: 17px;"><div style="min-width: 1px; height: 2171px;"></div></div><div class="CodeMirror-hscrollbar" tabindex="-1" cm-not-content="true" style="display: block; right: 17px; left: 43px;"><div style="height: 100%; min-height: 1px; width: 1392px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true" style="display: block; height: 17px; width: 17px;"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 43px; min-width: 1392.56px; margin-bottom: -17px; border-right-width: 33px; min-height: 2171px; padding-right: 17px; padding-bottom: 17px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre class="CodeMirror-line-like"><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 4px; top: 0px; height: 21px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation" style=""><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">1</div><div class="CodeMirror-gutter-elt" style="left: 32px; width: 10px;"><div class="CodeMirror-foldgutter-open CodeMirror-guttermarker-subtle"></div></div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">def</span> <span class="cm-def">epais</span>(<span class="cm-variable">L</span>):</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">2</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable">I</span><span class="cm-operator">=</span><span class="cm-variable">L</span>[<span class="cm-operator">-</span><span class="cm-number">1</span>::<span class="cm-operator">-</span><span class="cm-number">1</span>]</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">3</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable">J</span><span class="cm-operator">=</span>[]</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">4</div><div class="CodeMirror-gutter-elt" style="left: 32px; width: 10px;"><div class="CodeMirror-foldgutter-open CodeMirror-guttermarker-subtle"></div></div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-keyword">for</span> <span class="cm-variable">i</span> <span class="cm-keyword">in</span> <span class="cm-variable">I</span>:</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">5</div><div class="CodeMirror-gutter-elt" style="left: 32px; width: 10px;"><div class="CodeMirror-foldgutter-open CodeMirror-guttermarker-subtle"></div></div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-keyword">if</span> <span class="cm-variable">i</span><span class="cm-operator">&lt;</span><span class="cm-number">0</span>:</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">6</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">            <span class="cm-variable">J</span>.<span class="cm-property">append</span>(<span class="cm-operator">-</span><span class="cm-variable">i</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">7</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable">K</span><span class="cm-operator">=</span>[<span class="cm-variable">J</span>[<span class="cm-number">0</span>]]</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">8</div><div class="CodeMirror-gutter-elt" style="left: 32px; width: 10px;"><div class="CodeMirror-foldgutter-open CodeMirror-guttermarker-subtle"></div></div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-keyword">for</span> <span class="cm-variable">j</span> <span class="cm-keyword">in</span> <span class="cm-builtin">range</span>(<span class="cm-number">1</span>,<span class="cm-builtin">len</span>(<span class="cm-variable">J</span>)):</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">9</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-variable">K</span>.<span class="cm-property">append</span>(<span class="cm-variable">J</span>[<span class="cm-variable">j</span>]<span class="cm-operator">-</span><span class="cm-variable">J</span>[<span class="cm-variable">j</span><span class="cm-operator">-</span><span class="cm-number">1</span>])</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">10</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-keyword">return</span> <span class="cm-variable">K</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">11</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">12</div><div class="CodeMirror-gutter-elt" style="left: 32px; width: 10px;"><div class="CodeMirror-foldgutter-open CodeMirror-guttermarker-subtle"></div></div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">def</span> <span class="cm-def">nbRed</span>(<span class="cm-variable">vert</span>):</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">13</div><div class="CodeMirror-gutter-elt" style="left: 32px; width: 10px;"><div class="CodeMirror-foldgutter-open CodeMirror-guttermarker-subtle"></div></div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-keyword">for</span> <span class="cm-variable">c</span> <span class="cm-keyword">in</span> <span class="cm-variable">vert</span>:</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">14</div><div class="CodeMirror-gutter-elt" style="left: 32px; width: 10px;"><div class="CodeMirror-foldgutter-open CodeMirror-guttermarker-subtle"></div></div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-keyword">if</span> <span class="cm-variable">c</span>[<span class="cm-number">1</span>]<span class="cm-operator">==</span><span class="cm-number">0</span>:</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">15</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">            <span class="cm-keyword">return</span> <span class="cm-variable">c</span>[<span class="cm-number">0</span>]</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">16</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">17</div><div class="CodeMirror-gutter-elt" style="left: 32px; width: 10px;"><div class="CodeMirror-foldgutter-open CodeMirror-guttermarker-subtle"></div></div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">def</span> <span class="cm-def">Belyi</span>(<span class="cm-variable">a</span>,<span class="cm-variable">b</span>,<span class="cm-variable">p</span>):</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">18</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable">n</span><span class="cm-operator">=</span><span class="cm-variable">a</span><span class="cm-operator">+</span><span class="cm-variable">b</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">19</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable">c</span><span class="cm-operator">=</span><span class="cm-variable">a</span><span class="cm-operator">/</span><span class="cm-variable">n</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">20</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable">l</span><span class="cm-operator">=</span><span class="cm-variable">a</span><span class="cm-operator">^</span><span class="cm-variable">a</span><span class="cm-operator">*</span><span class="cm-variable">b</span><span class="cm-operator">^</span><span class="cm-variable">b</span><span class="cm-operator">/</span><span class="cm-variable">n</span><span class="cm-operator">^</span><span class="cm-variable">n</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">21</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable">X</span><span class="cm-operator">=</span><span class="cm-variable">var</span>(<span class="cm-string">'X'</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">22</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable">B</span><span class="cm-operator">=</span><span class="cm-variable">X</span><span class="cm-operator">^</span><span class="cm-variable">a</span><span class="cm-operator">*</span>(<span class="cm-number">1</span><span class="cm-operator">-</span><span class="cm-variable">X</span>)<span class="cm-operator">^</span><span class="cm-variable">b</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">23</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    </span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">24</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-string">"""print("Etude du polynôme de Belyi B(X):")</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">25</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-string">    show(B)</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">26</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-string">    print("Sommet noir central a/n:")</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">27</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-string">    view("a/n")</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">28</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-string">    show(c)</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">29</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-string">    print("Valeur critique non nulle lambda:")</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">30</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-string">    show(l)"""</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">31</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">32</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable">G</span><span class="cm-operator">=</span><span class="cm-variable">Graph</span>()</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">33</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable">G</span>.<span class="cm-property">weighted</span>(<span class="cm-keyword">True</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">34</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">35</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable">K</span>.<span class="cm-operator">&lt;</span><span class="cm-variable">al</span><span class="cm-operator">&gt;=</span><span class="cm-variable">Qp</span>(<span class="cm-variable">p</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">36</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable">R</span>.<span class="cm-operator">&lt;</span><span class="cm-variable">x</span><span class="cm-operator">&gt;=</span><span class="cm-variable">ZZ</span>[]</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">37</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    </span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">38</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable">B1</span><span class="cm-operator">=</span><span class="cm-variable">B</span><span class="cm-operator">-</span><span class="cm-variable">l</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">39</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable">D</span><span class="cm-operator">=</span><span class="cm-variable">B1</span>.<span class="cm-property">polynomial</span>(<span class="cm-variable">K</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">40</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">41</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-builtin">print</span>(<span class="cm-string">"Etude au voisinage de 0: polygone de Newton de B(X)-lambda"</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">42</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable">show</span>(<span class="cm-variable">plot</span>((<span class="cm-variable">D</span>.<span class="cm-property">newton_polygon</span>()),<span class="cm-variable">figsize</span><span class="cm-operator">=</span><span class="cm-number">3</span>))</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">43</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable">NP</span><span class="cm-operator">=</span><span class="cm-variable">D</span>.<span class="cm-property">newton_polygon</span>()</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">44</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable">SNP</span><span class="cm-operator">=</span><span class="cm-variable">NP</span>.<span class="cm-property">slopes</span>(<span class="cm-variable">repetition</span><span class="cm-operator">=</span><span class="cm-keyword">False</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">45</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    </span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">46</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable">v</span><span class="cm-operator">=</span><span class="cm-variable">QQ</span>.<span class="cm-property">valuation</span>(<span class="cm-variable">p</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">47</div><div class="CodeMirror-gutter-elt" style="left: 32px; width: 10px;"><div class="CodeMirror-foldgutter-open CodeMirror-guttermarker-subtle"></div></div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-keyword">if</span> <span class="cm-variable">v</span>(<span class="cm-variable">a</span><span class="cm-operator">/</span><span class="cm-variable">n</span>)<span class="cm-operator">&lt;</span><span class="cm-number">0</span>:</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">48</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-variable">S</span><span class="cm-operator">=</span><span class="cm-string">"Inf"</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">49</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-builtin">print</span>(<span class="cm-string">"Le sommet central (de multiplicité 2) a/n et "</span>, <span class="cm-variable">nbRed</span>(<span class="cm-variable">NP</span>.<span class="cm-property">vertices</span>())<span class="cm-operator">-</span><span class="cm-number">2</span>, <span class="cm-string">"sommets avec lui se réduisent sur l'infini (ie I) avec une valuation de "</span>, <span class="cm-builtin">abs</span>(<span class="cm-variable">SNP</span>[<span class="cm-number">0</span>]),<span class="cm-string">"\n"</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">50</div><div class="CodeMirror-gutter-elt" style="left: 32px; width: 10px;"><div class="CodeMirror-foldgutter-open CodeMirror-guttermarker-subtle"></div></div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-keyword">elif</span> <span class="cm-variable">v</span>(<span class="cm-variable">a</span><span class="cm-operator">/</span><span class="cm-variable">n</span>)<span class="cm-operator">&gt;</span><span class="cm-number">0</span>:</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">51</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-variable">S</span><span class="cm-operator">=</span><span class="cm-string">"Z"</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">52</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-builtin">print</span>(<span class="cm-string">"Le sommet central (de multiplicité 2) a/n et "</span>, <span class="cm-variable">nbRed</span>(<span class="cm-variable">NP</span>.<span class="cm-property">vertices</span>())<span class="cm-operator">-</span><span class="cm-number">2</span>, <span class="cm-string">"sommets avec lui se réduisent sur 0 (ie Z) avec une valuation de "</span>, <span class="cm-builtin">abs</span>(<span class="cm-variable">SNP</span>[<span class="cm-number">0</span>]),<span class="cm-string">"\n"</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">53</div><div class="CodeMirror-gutter-elt" style="left: 32px; width: 10px;"><div class="CodeMirror-foldgutter-open CodeMirror-guttermarker-subtle"></div></div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-keyword">else</span>:</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">54</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-variable">S</span><span class="cm-operator">=</span><span class="cm-string">"B"</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">55</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-builtin">print</span>(<span class="cm-string">"Le sommet central a/n ainsi que tous les autres sommets noirs sont inversibles\n"</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">56</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        </span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">57</div><div class="CodeMirror-gutter-elt" style="left: 32px; width: 10px;"><div class="CodeMirror-foldgutter-open CodeMirror-guttermarker-subtle"></div></div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-keyword">if</span> (<span class="cm-variable">SNP</span>[<span class="cm-number">0</span>]<span class="cm-operator">&lt;</span><span class="cm-number">0</span>):</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">58</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-variable">G</span>.<span class="cm-property">add_edge</span>((<span class="cm-string">"B"</span>,<span class="cm-string">"Z"</span>,<span class="cm-operator">-</span><span class="cm-variable">SNP</span>[<span class="cm-number">0</span>]))</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">59</div><div class="CodeMirror-gutter-elt" style="left: 32px; width: 10px;"><div class="CodeMirror-foldgutter-open CodeMirror-guttermarker-subtle"></div></div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-keyword">if</span>(<span class="cm-variable">SNP</span>[<span class="cm-number">0</span>]<span class="cm-operator">&gt;</span><span class="cm-number">0</span>):</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">60</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-variable">G</span>.<span class="cm-property">add_edge</span>((<span class="cm-string">"B"</span>,<span class="cm-string">"Inf"</span>,<span class="cm-variable">SNP</span>[<span class="cm-number">0</span>])) </span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">61</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">62</div><div class="CodeMirror-gutter-elt" style="left: 32px; width: 10px;"><div class="CodeMirror-foldgutter-open CodeMirror-guttermarker-subtle"></div></div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-keyword">if</span> (<span class="cm-variable">SNP</span>[<span class="cm-number">0</span>]<span class="cm-operator">!=</span><span class="cm-number">0</span>):</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">63</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-builtin">print</span>(<span class="cm-string">"Création du graphe:"</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">64</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-variable">show</span>(<span class="cm-variable">G</span>.<span class="cm-property">plot</span>(<span class="cm-variable">edge_labels</span><span class="cm-operator">=</span><span class="cm-keyword">True</span>),<span class="cm-variable">figsize</span><span class="cm-operator">=</span><span class="cm-number">3</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">65</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    </span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">66</div><div class="CodeMirror-gutter-elt" style="left: 32px; width: 10px;"><div class="CodeMirror-foldgutter-open CodeMirror-guttermarker-subtle"></div></div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-keyword">if</span> <span class="cm-variable">v</span>(<span class="cm-variable">a</span><span class="cm-operator">/</span><span class="cm-variable">n</span>)<span class="cm-operator">&gt;</span><span class="cm-number">0</span>:</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">67</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-variable">B4</span><span class="cm-operator">=</span><span class="cm-variable">B</span>.<span class="cm-property">substitute</span>({<span class="cm-variable">X</span>:<span class="cm-number">1</span><span class="cm-operator">+</span><span class="cm-variable">X</span>})<span class="cm-operator">-</span><span class="cm-variable">l</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">68</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-variable">D</span><span class="cm-operator">=</span><span class="cm-variable">B4</span>.<span class="cm-property">polynomial</span>(<span class="cm-variable">K</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">69</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-builtin">print</span>(<span class="cm-string">"Etude au voisinage de 1: polygone de Newton de B(1+X)-lambda"</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">70</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-variable">NP</span><span class="cm-operator">=</span><span class="cm-variable">D</span>.<span class="cm-property">newton_polygon</span>()</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">71</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-variable">show</span>(<span class="cm-variable">plot</span>(<span class="cm-variable">NP</span>),<span class="cm-variable">figsize</span><span class="cm-operator">=</span><span class="cm-number">3</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">72</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-variable">SNP</span><span class="cm-operator">=</span><span class="cm-variable">NP</span>.<span class="cm-property">slopes</span>(<span class="cm-variable">repetition</span><span class="cm-operator">=</span><span class="cm-keyword">False</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">73</div><div class="CodeMirror-gutter-elt" style="left: 32px; width: 10px;"><div class="CodeMirror-foldgutter-open CodeMirror-guttermarker-subtle"></div></div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-keyword">if</span> <span class="cm-variable">SNP</span>[<span class="cm-number">0</span>]<span class="cm-operator">&lt;</span><span class="cm-number">0</span>:</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">74</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">            <span class="cm-variable">G</span>.<span class="cm-property">add_edge</span>((<span class="cm-string">"B"</span>,<span class="cm-string">"I"</span>,<span class="cm-operator">-</span><span class="cm-variable">SNP</span>[<span class="cm-number">0</span>]))</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">75</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">            <span class="cm-builtin">print</span>(<span class="cm-string">"Il y a "</span>, <span class="cm-variable">nbRed</span>(<span class="cm-variable">NP</span>.<span class="cm-property">vertices</span>()), <span class="cm-string">"sommets se réduisent sur 1 avec une valuation de "</span>, <span class="cm-operator">-</span><span class="cm-variable">SNP</span>[<span class="cm-number">0</span>], <span class="cm-string">"\n"</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">76</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">            <span class="cm-builtin">print</span>(<span class="cm-string">"Complétion du graphe:"</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">77</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">            <span class="cm-variable">show</span>(<span class="cm-variable">G</span>.<span class="cm-property">plot</span>(<span class="cm-variable">edge_labels</span><span class="cm-operator">=</span><span class="cm-keyword">True</span>),<span class="cm-variable">figsize</span><span class="cm-operator">=</span><span class="cm-number">4</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">78</div><div class="CodeMirror-gutter-elt" style="left: 32px; width: 10px;"><div class="CodeMirror-foldgutter-open CodeMirror-guttermarker-subtle"></div></div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-keyword">else</span>:</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">79</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">            <span class="cm-builtin">print</span>(<span class="cm-string">"Rien à rajouter au graphe.\n"</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">80</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">81</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    </span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">82</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable">B2</span><span class="cm-operator">=</span><span class="cm-variable">B</span>.<span class="cm-property">substitute</span>({<span class="cm-variable">X</span>:<span class="cm-variable">a</span><span class="cm-operator">/</span><span class="cm-variable">n</span><span class="cm-operator">*</span><span class="cm-variable">X</span>})<span class="cm-operator">*</span>(<span class="cm-variable">n</span><span class="cm-operator">/</span><span class="cm-variable">a</span>)<span class="cm-operator">^</span><span class="cm-variable">a</span><span class="cm-operator">*</span>(<span class="cm-variable">n</span><span class="cm-operator">/</span><span class="cm-variable">b</span>)<span class="cm-operator">^</span><span class="cm-variable">b</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">83</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable">B3</span><span class="cm-operator">=</span><span class="cm-variable">B2</span>.<span class="cm-property">substitute</span>({<span class="cm-variable">X</span>:<span class="cm-number">1</span><span class="cm-operator">+</span><span class="cm-variable">X</span>})<span class="cm-operator">-</span><span class="cm-number">1</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">84</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable">D</span><span class="cm-operator">=</span><span class="cm-variable">B3</span>.<span class="cm-property">polynomial</span>(<span class="cm-variable">K</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">85</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">86</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-builtin">print</span>(<span class="cm-string">"Etude au voisinage du sommet central a/n:"</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">87</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable">NP</span><span class="cm-operator">=</span><span class="cm-variable">D</span>(<span class="cm-variable">x</span>).<span class="cm-property">newton_polygon</span>()</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">88</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable">show</span>(<span class="cm-variable">plot</span>(<span class="cm-variable">NP</span>),<span class="cm-variable">figsize</span><span class="cm-operator">=</span><span class="cm-number">3</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">89</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-builtin">print</span>(<span class="cm-variable">NP</span>.<span class="cm-property">vertices</span>(),<span class="cm-string">"\n\n"</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">90</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">91</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable">SNP</span><span class="cm-operator">=</span><span class="cm-variable">NP</span>.<span class="cm-property">slopes</span>(<span class="cm-variable">repetition</span><span class="cm-operator">=</span><span class="cm-keyword">False</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">92</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable">Pe</span><span class="cm-operator">=</span><span class="cm-variable">epais</span>(<span class="cm-variable">SNP</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">93</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-builtin">print</span>(<span class="cm-string">"Proximité des sommets se réduisant sur a/n -&gt; opposé de "</span>, <span class="cm-variable">SNP</span>, <span class="cm-string">"\n"</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">94</div><div class="CodeMirror-gutter-elt" style="left: 32px; width: 10px;"><div class="CodeMirror-foldgutter-open CodeMirror-guttermarker-subtle"></div></div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-keyword">if</span> (<span class="cm-variable">Pe</span><span class="cm-operator">!=</span>[]):</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">95</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-variable">G</span>.<span class="cm-property">add_edge</span>((<span class="cm-variable">S</span>,<span class="cm-number">0</span>,<span class="cm-variable">Pe</span>[<span class="cm-number">0</span>]))</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">96</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable">i</span><span class="cm-operator">=</span><span class="cm-number">0</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">97</div><div class="CodeMirror-gutter-elt" style="left: 32px; width: 10px;"><div class="CodeMirror-foldgutter-open CodeMirror-guttermarker-subtle"></div></div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-keyword">for</span> <span class="cm-variable">s</span> <span class="cm-keyword">in</span> <span class="cm-variable">Pe</span>[<span class="cm-number">1</span>:]:</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">98</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-variable">G</span>.<span class="cm-property">add_edge</span>((<span class="cm-variable">i</span>,<span class="cm-variable">i</span><span class="cm-operator">+</span><span class="cm-number">1</span>,<span class="cm-variable">s</span>))</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">99</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-variable">i</span><span class="cm-operator">+=</span><span class="cm-number">1</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">100</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">101</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-builtin">print</span>(<span class="cm-string">"Graphe final pour:\n"</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">102</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable">show</span>(<span class="cm-variable">B</span>)</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -43px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 24px;">103</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable">show</span>(<span class="cm-variable">G</span>.<span class="cm-property">plot</span>(<span class="cm-variable">edge_labels</span><span class="cm-operator">=</span><span class="cm-keyword">True</span>),<span class="cm-variable">figsize</span><span class="cm-operator">=</span><span class="cm-number">4</span>)</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 33px; width: 1px; border-bottom: 17px solid transparent; top: 2171px;"></div><div class="CodeMirror-gutters" style="height: 2221px; left: 0px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 32px;"></div><div class="CodeMirror-gutter CodeMirror-foldgutter"></div></div></div></div>
+  </div>
+  <!-- Explicitly set a button type other than 'submit' so it doesn't submit a form -->
+  <button type="button" class="sagecell_evalButton ui-button ui-corner-all ui-widget">Execute</button> 
+  <div class="sagecell_options">
+    <div class="sagecell_language" style="display: none;">
+      <label>
+        Language:
+        <select>
+          <option value="sage">Sage</option>
+          <option value="gap" style="display: none;">Gap</option>
+          <option value="gp" style="display: none;">GP</option>
+          <option value="html" style="display: none;">HTML</option>
+          <option value="macaulay2" style="display: none;">Macaulay2</option>
+          <option value="maxima" style="display: none;">Maxima</option>
+          <option value="octave" style="display: none;">Octave</option>
+          <option value="python" style="display: none;">Python</option>
+          <option value="r" style="display: none;">R</option>
+          <option value="singular" style="display: none;">Singular</option>
+        </select>
+      </label>
+    </div>
+  </div>
+<!--  <div class="sagecell_advancedFrame">
+    <div class="sagecell_advancedTitle">Advanced</div>
+    <div style="display:none" class="sagecell_advancedFields">
+      <fieldset class="sagecell_files">
+        <legend>Upload files</legend>
+        <button class="sagecell_addFile">Add file</button>
+        <button class="sagecell_clearFiles">Clear files</button>
+        <ul class="sagecell_fileList"></ul>
+      </fieldset>
+    </div>
+  </div> -->
+</div>
+
+<div class="sagecell-templates hide">
+</div>
+
+
+<div class="sagecell_output_elements" style="">
+  <div class="sagecell_output"><div class="sagecell_sessionContainer"><div class="sagecell_permalink"><button>Share</button><div class="sagecell_permalink_result" style="display: none;"><div><a title="Link that will work on any Sage Cell server">Permalink</a></div><div><a title="Shortened link that will only work on this server">Short temporary link</a></div><div><a><img title="QR code that will only work on this server" alt=""></a></div><label style="display: none;">Share interact state<input type="checkbox"></label></div></div><div class="sagecell_sessionOutput sagecell_active"><img src="./Model_Belyi_files/spinner.gif" alt="Loading" class="sagecell_spinner" style="display: none;"></div><div class="sagecell_poweredBy"><a href="https://sagecell.sagemath.org/help.html" target="_blank">Help</a> | Powered by <a href="http://www.sagemath.org/" target="_blank">SageMath</a></div><div class="sagecell_sessionFiles"></div></div></div>
+  <div class="sagecell_messages">
+    <hr>
+    <span style="font-size:large;font-weight:bold">Messages</span>
+    <br><br>
+  </div>
+</div></div></div><div class="nb-cell nb-markdown-cell"><p>La fonction <code>Belyi(a,b,p)</code> étudie en justifiant le modèle semi-stable du polynôme de Belyi
+<span><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>B</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mi>X</mi><mi>a</mi></msup><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>X</mi><msup><mo stretchy="false">)</mo><mi>b</mi></msup></mrow><annotation encoding="application/x-tex"> B(X)=X^a(1-X)^b </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathnormal" style="margin-right: 0.05017em;">B</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right: 0.07847em;">X</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right: 0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.714392em;"><span class="" style="top: -3.113em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">a</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 1.14911em; vertical-align: -0.25em;"></span><span class="mord mathnormal" style="margin-right: 0.07847em;">X</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.899108em;"><span class="" style="top: -3.113em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">b</span></span></span></span></span></span></span></span></span></span></span></span></span>
+modulo un nombre premier <span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.625em; vertical-align: -0.19444em;"></span><span class="mord mathnormal">p</span></span></span></span></span>.
+Dans cette version on doit avoir <span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi><mi>p</mi></msub><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>≥</mo><msub><mi>v</mi><mi>p</mi></msub><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">v_p(a)\geq v_p(b)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1.03611em; vertical-align: -0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right: 0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.151392em;"><span class="" style="top: -2.55em; margin-left: -0.03588em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.286108em;"><span class=""></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1.03611em; vertical-align: -0.286108em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right: 0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.151392em;"><span class="" style="top: -2.55em; margin-left: -0.03588em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.286108em;"><span class=""></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">b</span><span class="mclose">)</span></span></span></span></span>.</p>
+</div><div class="nb-cell nb-code-cell"><div class="nb-input" data-prompt-number="2" style="display: none;"><pre class=" language-sage"><code class=" language-sage" data-language="sage">Belyi(25,50,5)</code></pre></div><div class="nb-output" data-prompt-number="2" style="display: none;"><pre class="nb-stdout">Etude au voisinage de 0: polygone de Newton de B(X)-lambda
+</pre></div><div class="nb-output" data-prompt-number="2" style="display: none;"><img class="nb-image-output" src="data:image/png;base64,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"></div><div class="nb-output" data-prompt-number="2" style="display: none;"><pre class="nb-stdout">Le sommet central a/n ainsi que tous les autres sommets noirs sont inversibles
+
+Etude au voisinage du sommet central a/n:
+</pre></div><div class="nb-output" data-prompt-number="2" style="display: none;"><img class="nb-image-output" src="data:image/png;base64,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"></div><div class="nb-output" data-prompt-number="2" style="display: none;"><pre class="nb-stdout">[(2, 2), (10, 1), (50, 0), (75, 0)] 
+
+
+Proximité des sommets se réduisant sur a/n -&gt; opposé de  [-1/8, -1/40, 0] 
+
+Graphe final pour:
+
+</pre></div><div class="nb-output" data-prompt-number="2" style="display: none;"><div class="nb-html-output"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" display="true" tabindex="0" ctxtmenu_counter="0" style="font-size: 113.1%; position: relative;"><mjx-math display="true" class="MJX-TEX" aria-hidden="true" style="margin-left: 0px; margin-right: 0px;"><mjx-msup><mjx-texatom texclass="ORD"><mjx-mrow><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44B TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="3"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-mrow></mjx-texatom><mjx-script style="vertical-align: 0.477em;"><mjx-texatom size="s" texclass="ORD"><mjx-mn class="mjx-n"><mjx-c class="mjx-c35"></mjx-c><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-texatom></mjx-script></mjx-msup><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44B TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.413em; margin-left: 0.051em;"><mjx-texatom size="s" texclass="ORD"><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c><mjx-c class="mjx-c35"></mjx-c></mjx-mn></mjx-texatom></mjx-script></mjx-msup></mjx-math><mjx-assistive-mml unselectable="on" display="block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><msup><mrow data-mjx-texclass="ORD"><mrow data-mjx-texclass="INNER"><mo data-mjx-texclass="OPEN">(</mo><mi>X</mi><mo>−</mo><mn>1</mn><mo data-mjx-texclass="CLOSE">)</mo></mrow></mrow><mrow data-mjx-texclass="ORD"><mn>50</mn></mrow></msup><msup><mi>X</mi><mrow data-mjx-texclass="ORD"><mn>25</mn></mrow></msup></math></mjx-assistive-mml></mjx-container></div></div><div class="nb-output" data-prompt-number="2" style="display: none;"><img class="nb-image-output" src="data:image/png;base64,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"></div>
+  <div class="compute sagecell output_da7b7900fdc44dcd9373209a1dd4dba9" style=""><div class="sagecell_input">
+  <div class="sagecell_editor">
+    <textarea class="sagecell_commands" autocapitalize="off" autocomplete="off" autocorrect="off" inputmode="verbatim" x-inputmode="verbatim" style="display: none;"></textarea><div class="CodeMirror cm-s-default"><button title="Toggle full-screen editor (F11)" type="button" class="sagecell_fullScreen sagecell_icon-resize-full" style="display: none;"></button><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5px; left: 45px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" tabindex="-1" cm-not-content="true"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" tabindex="-1" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 40px; min-width: 114.771px; margin-bottom: -17px; border-right-width: 33px; min-height: 29px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre class="CodeMirror-line-like"><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 4px; top: 0px; height: 21px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation"><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -40px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">Belyi</span>(<span class="cm-number">25</span>,<span class="cm-number">50</span>,<span class="cm-number">5</span>)</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 33px; width: 1px; border-bottom: 0px solid transparent; top: 29px;"></div><div class="CodeMirror-gutters" style="height: 62px; left: 0px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 29px;"></div><div class="CodeMirror-gutter CodeMirror-foldgutter"></div></div></div></div>
+  </div>
+  <!-- Explicitly set a button type other than 'submit' so it doesn't submit a form -->
+  <button type="button" class="sagecell_evalButton ui-button ui-corner-all ui-widget">Execute</button> 
+  <div class="sagecell_options">
+    <div class="sagecell_language" style="display: none;">
+      <label>
+        Language:
+        <select>
+          <option value="sage">Sage</option>
+          <option value="gap" style="display: none;">Gap</option>
+          <option value="gp" style="display: none;">GP</option>
+          <option value="html" style="display: none;">HTML</option>
+          <option value="macaulay2" style="display: none;">Macaulay2</option>
+          <option value="maxima" style="display: none;">Maxima</option>
+          <option value="octave" style="display: none;">Octave</option>
+          <option value="python" style="display: none;">Python</option>
+          <option value="r" style="display: none;">R</option>
+          <option value="singular" style="display: none;">Singular</option>
+        </select>
+      </label>
+    </div>
+  </div>
+<!--  <div class="sagecell_advancedFrame">
+    <div class="sagecell_advancedTitle">Advanced</div>
+    <div style="display:none" class="sagecell_advancedFields">
+      <fieldset class="sagecell_files">
+        <legend>Upload files</legend>
+        <button class="sagecell_addFile">Add file</button>
+        <button class="sagecell_clearFiles">Clear files</button>
+        <ul class="sagecell_fileList"></ul>
+      </fieldset>
+    </div>
+  </div> -->
+</div>
+
+<div class="sagecell-templates hide">
+</div>
+
+
+<div class="sagecell_output_elements" style="">
+  <div class="sagecell_output"><div class="sagecell_sessionContainer"><div class="sagecell_permalink"><button>Share</button><div class="sagecell_permalink_result" style="display: none;"><div><a title="Link that will work on any Sage Cell server">Permalink</a></div><div><a title="Shortened link that will only work on this server">Short temporary link</a></div><div><a><img title="QR code that will only work on this server" alt=""></a></div><label style="display: none;">Share interact state<input type="checkbox"></label></div></div><div class="sagecell_sessionOutput sagecell_active"><img src="./Model_Belyi_files/spinner.gif" alt="Loading" class="sagecell_spinner" style="display: none;"><pre class="sagecell_stdout">Etude au voisinage de 0: polygone de Newton de B(X)-lambda
+</pre><img src="./Model_Belyi_files/tmp_k_jrhz0l.png"><pre class="sagecell_stdout">Le sommet central a/n ainsi que tous les autres sommets noirs sont inversibles
+
+Etude au voisinage du sommet central a/n:
+</pre><img src="./Model_Belyi_files/tmp_kvsbmkej.png"><div><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" display="true" tabindex="0" ctxtmenu_counter="1" style="font-size: 117.4%; position: relative;"><mjx-math display="true" class="MJX-TEX" aria-hidden="true" style="margin-left: 0px; margin-right: 0px;"><mjx-msup><mjx-texatom texclass="ORD"><mjx-mrow><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44B TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="3"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-mrow></mjx-texatom><mjx-script style="vertical-align: 0.477em;"><mjx-texatom size="s" texclass="ORD"><mjx-mn class="mjx-n"><mjx-c class="mjx-c35"></mjx-c><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-texatom></mjx-script></mjx-msup><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44B TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.413em; margin-left: 0.051em;"><mjx-texatom size="s" texclass="ORD"><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c><mjx-c class="mjx-c35"></mjx-c></mjx-mn></mjx-texatom></mjx-script></mjx-msup></mjx-math><mjx-assistive-mml unselectable="on" display="block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><msup><mrow data-mjx-texclass="ORD"><mrow data-mjx-texclass="INNER"><mo data-mjx-texclass="OPEN">(</mo><mi>X</mi><mo>−</mo><mn>1</mn><mo data-mjx-texclass="CLOSE">)</mo></mrow></mrow><mrow data-mjx-texclass="ORD"><mn>50</mn></mrow></msup><msup><mi>X</mi><mrow data-mjx-texclass="ORD"><mn>25</mn></mrow></msup></math></mjx-assistive-mml></mjx-container></div><pre class="sagecell_stdout">[(2, 2), (10, 1), (50, 0), (75, 0)] 
+
+
+Proximité des sommets se réduisant sur a/n -&gt; opposé de  [-1/8, -1/40, 0] 
+
+Graphe final pour:
+
+</pre><img src="./Model_Belyi_files/tmp_g626h77x.png"></div><div class="sagecell_poweredBy"><a href="https://sagecell.sagemath.org/help.html" target="_blank">Help</a> | Powered by <a href="http://www.sagemath.org/" target="_blank">SageMath</a></div><div class="sagecell_sessionFiles"></div></div></div>
+  <div class="sagecell_messages"><div>Accepted: {"data":{"text/plain":"text/image-filename file","text/image-filename":"tmp_g626h77x.png?m=1637675393.7928889"},"source":"sagecell"}</div><div>Accepted: {"name":"stdout","text":"[(2, 2), (10, 1), (50, 0), (75, 0)] \n\n\nProximité des sommets se réduisant sur a/n -&gt; opposé de  [-1/8, -1/40, 0] \n\nGraphe final pour:\n\n"}</div><div>Accepted: {"data":{"text/plain":"html","text/html":"&lt;html&gt;\\[\\newcommand{\\Bold}[1]{\\mathbf{#1}}{\\left(X - 1\\right)}^{50} X^{25}\\]&lt;/html&gt;"},"source":"sagecell"}</div><div>Accepted: {"data":{"text/plain":"text/image-filename file","text/image-filename":"tmp_kvsbmkej.png?m=1637675393.660877"},"source":"sagecell"}</div><div>Accepted: {"name":"stdout","text":"Etude au voisinage du sommet central a/n:\n"}</div><div>Accepted: {"name":"stdout","text":"\n"}</div><div>Accepted: {"name":"stdout","text":"Le sommet central a/n ainsi que tous les autres sommets noirs sont inversibles\n"}</div><div>Accepted: {"data":{"text/plain":"text/image-filename file","text/image-filename":"tmp_k_jrhz0l.png?m=1637675392.6687865"},"source":"sagecell"}</div><div>Accepted: {"name":"stdout","text":"Etude au voisinage de 0: polygone de Newton de B(X)-lambda\n"}</div>
+    <hr>
+    <span style="font-size:large;font-weight:bold">Messages</span>
+    <br><br>
+  </div>
+</div></div></div><div class="nb-cell nb-code-cell"><div class="nb-input" style="display: none;"><pre class=" language-sage"><code class=" language-sage" data-language="sage"></code></pre></div>
+  <div class="compute sagecell output_25db0b35170f4968b627249163405225" style=""><div class="sagecell_input">
+  <div class="sagecell_editor">
+    <textarea class="sagecell_commands" autocapitalize="off" autocomplete="off" autocorrect="off" inputmode="verbatim" x-inputmode="verbatim" style="display: none;"></textarea><div class="CodeMirror cm-s-default"><button title="Toggle full-screen editor (F11)" type="button" class="sagecell_fullScreen sagecell_icon-resize-full" style="display: none;"></button><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5px; left: 45px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-vscrollbar" tabindex="-1" cm-not-content="true"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" tabindex="-1" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 40px; min-width: 7px; margin-bottom: -17px; border-right-width: 33px; min-height: 29px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre class="CodeMirror-line-like"><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 4px; top: 0px; height: 21px;">&nbsp;</div></div><div class="CodeMirror-code" role="presentation"><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -40px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">1</div></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 33px; width: 1px; border-bottom: 0px solid transparent; top: 29px;"></div><div class="CodeMirror-gutters" style="height: 62px; left: 0px;"><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 29px;"></div><div class="CodeMirror-gutter CodeMirror-foldgutter"></div></div></div></div>
+  </div>
+  <!-- Explicitly set a button type other than 'submit' so it doesn't submit a form -->
+  <button type="button" class="sagecell_evalButton ui-button ui-corner-all ui-widget">Execute</button> 
+  <div class="sagecell_options">
+    <div class="sagecell_language" style="display: none;">
+      <label>
+        Language:
+        <select>
+          <option value="sage">Sage</option>
+          <option value="gap" style="display: none;">Gap</option>
+          <option value="gp" style="display: none;">GP</option>
+          <option value="html" style="display: none;">HTML</option>
+          <option value="macaulay2" style="display: none;">Macaulay2</option>
+          <option value="maxima" style="display: none;">Maxima</option>
+          <option value="octave" style="display: none;">Octave</option>
+          <option value="python" style="display: none;">Python</option>
+          <option value="r" style="display: none;">R</option>
+          <option value="singular" style="display: none;">Singular</option>
+        </select>
+      </label>
+    </div>
+  </div>
+<!--  <div class="sagecell_advancedFrame">
+    <div class="sagecell_advancedTitle">Advanced</div>
+    <div style="display:none" class="sagecell_advancedFields">
+      <fieldset class="sagecell_files">
+        <legend>Upload files</legend>
+        <button class="sagecell_addFile">Add file</button>
+        <button class="sagecell_clearFiles">Clear files</button>
+        <ul class="sagecell_fileList"></ul>
+      </fieldset>
+    </div>
+  </div> -->
+</div>
+
+<div class="sagecell-templates hide">
+</div>
+
+
+<div class="sagecell_output_elements" style="display: none;">
+  <div class="sagecell_output"></div>
+  <div class="sagecell_messages">
+    <hr>
+    <span style="font-size:large;font-weight:bold">Messages</span>
+    <br><br>
+  </div>
+</div></div></div></div></div></div>
+
+
+            
+        </div>
+        <script src="./Model_Belyi_files/bootstrap.bundle.min.js.télécharger" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+        <script src="./Model_Belyi_files/jquery.min.js.télécharger"></script>
+        <script src="./Model_Belyi_files/embedded_sagecell.js.télécharger"></script>
+        <script src="./Model_Belyi_files/FileSaver.min.js.télécharger"></script>
+        <script src="./Model_Belyi_files/nbpreview.js.télécharger"></script>
+        <script src="./Model_Belyi_files/nbplayerConfig.js.télécharger"></script>
+        <script src="./Model_Belyi_files/nbrunner.min.js.télécharger"></script>
+        <script src="./Model_Belyi_files/nbplayer.min.js.télécharger"></script>
+    
+
+
+<script src="./Model_Belyi_files/custom.js.télécharger"></script></body></html>
